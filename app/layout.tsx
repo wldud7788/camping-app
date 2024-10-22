@@ -1,8 +1,8 @@
 import { GeistSans } from "geist/font/sans";
-import { ThemeProvider } from "next-themes";
 import "./globals.css";
-import Nav from "@/components/layout/Nav";
-import Footer from "@/components/layout/Footer";
+import { createClient } from "@/utils/supabase/server";
+import Providers from "@/utils/providers/providers";
+import { UserStoreProvider } from "@/utils/providers/userStoreProvider";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -10,31 +10,36 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "대기업 IT 매거진, TECH - BLOG",
+  title: "불멍스팟 - 초보 캠퍼를 위한 캠핑 가이드 및 모임 플랫폼",
   description:
-    "매일 업데이트되는 대기업 IT 이야기! 다양한 IT 콘텐츠와 함께 성장해보세요.",
+    "초보 캠퍼를 위한 캠핑 가이드를 제공하며, 캠핑 모임을 생성할 수 있는 편리한 앱입니다. 지역별 캠핑장 검색과 해당 지역의 날씨 정보를 확인하여 완벽한 캠핑 계획을 세워보세요!",
+    openGraph: {
+      title: "불멍스팟 - 초보 캠퍼를 위한 캠핑 가이드 및 모임 플랫폼",
+      description: "초보 캠퍼를 위한 캠핑 가이드를 제공하며, 캠핑 모임을 생성할 수 있는 편리한 앱입니다. 지역별 캠핑장 검색과 해당 지역의 날씨 정보를 확인하여 완벽한 캠핑 계획을 세워보세요!",
+    },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const {
+    data: { user }
+  } = await createClient().auth.getUser();
   return (
-    <html lang="en" className={GeistSans.className} suppressHydrationWarning>
+    <html lang="en"  
+     className={GeistSans.className} suppressHydrationWarning>
       <body className="bg-background text-foreground">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Nav />
+      {/* zustand provider */}
+      <UserStoreProvider isUser={!!user}>
+        {/* tanstack provider */}
+        <Providers>
           <main className="min-h-screen flex flex-col items-center pt-28">
             {children}
           </main>
-          <Footer />
-        </ThemeProvider>
+        </Providers>
+        </UserStoreProvider>
       </body>
     </html>
   );

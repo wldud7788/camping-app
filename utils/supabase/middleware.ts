@@ -44,9 +44,13 @@ export const updateSession = async (request: NextRequest) => {
 
     // protected routes
     // 보호된 경로에 접근 시 사용자 에러 발생 시 리다이렉트
-    if (request.nextUrl.pathname.startsWith("/protected") && user.error) {
-      return NextResponse.redirect(new URL("/sign-in", request.url));
-    }
+    // if (request.nextUrl.pathname.startsWith("/protected") && user.error) {
+    //   return NextResponse.redirect(new URL("/sign-in", request.url));
+    // }
+    // 보호된 경로 접근 시 리다이렉트 처리
+  if (request.nextUrl.pathname.startsWith("/protected/mypage") && !user) {
+    return NextResponse.redirect(new URL("/", request.url)); // 홈으로 리다이렉트
+  }
 
     return response;
   } catch (e) {
