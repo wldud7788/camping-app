@@ -1,0 +1,96 @@
+@import "reset-css/reset.css";
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+main {
+  width: 100%;
+  height: calc(100vh - 100px);
+  margin: 0 auto;
+}
+.header {
+  height: 50px;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+}
+.header a {
+  width: 120px;
+}
+.header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.header .user_img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.footer {
+  height: 50px;
+  background-color: rgb(221, 221, 221);
+  line-height: 50px;
+  text-align: center;
+  font-size: 12px;
+}
+.sign_up_wrapper {
+  background-color: rgb(197, 191, 191);
+  width: 300px;
+  margin: 0 auto;
+  border-radius: 15px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sign_up_wrapper h4 {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+.sign_up_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.sign_up_form label {
+  display: block;
+  color: gray;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.sign_up_form input {
+  border-radius: 15px;
+  border: 1px solid gray;
+  padding: 10px;
+}
+.sign_up_form button,
+.social_wrapper button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid gray;
+}
+
+/* mypage css start */
+/* mypage css end */
+.profile_avatar_wrapper {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profile_avatar_wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
