@@ -3,8 +3,11 @@ import Home from "../pages/Home";
 import SignIn from "../pages/(auth)/SignIn";
 import SignUp from "../pages/(auth)/SignUp";
 import { useContext } from "react";
-import { AuthContext } from "./AuthContext";
-import Mypage from "../pages/Mypage";
+import { Search } from "../pages/Search";
+import { Camping } from "../pages/Camping";
+import { CampingDetail } from "../pages/CampingDetail";
+import Mypage from "../pages/(auth)/Mypage";
+import { AuthContext } from "../shared/contexts/AuthContext";
 
 const AppRoutes = () => {
   const { isAuthenticated, isLoading } = useContext(AuthContext);
@@ -41,6 +44,9 @@ const AppRoutes = () => {
       </Route>
       {/* Common Routes */}
       <Route path="/" element={<Home />} />
+      <Route path="/search/:id" element={<Search />} />
+      <Route path="/camping" element={<Camping />} />
+      <Route path="/camping/:id" element={<CampingDetail />} />
       {/* 404 Route */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

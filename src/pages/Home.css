@@ -1,0 +1,32 @@
+.Home {
+  text-align: center;
+}
+.Home h2 {
+  line-height: 46px;
+  font-size: 21px;
+  font-weight: 800;
+  padding: 30px;
+}
+.Home .search_container {
+  position: relative;
+  max-width: 400px;
+  height: 40px;
+  margin: 0 auto;
+}
+.Home .search_input_container {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+}
+.Home input {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  padding-left: 40px;
+}
+.Home .search_icon {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+}

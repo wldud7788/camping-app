@@ -1,9 +1,9 @@
+import "./Mypage.css";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../shared/AuthContext";
-import { supabase } from "../supabaseClient";
-
+import { supabase } from "../../shared/supabase/supabaseClient";
+import { AuthContext } from "../../shared/contexts/AuthContext";
 const Mypage = () => {
-  const { user, isLoading, signOut } = useContext(AuthContext);
+  const { user, isLoading, signOut, setUser } = useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(user?.name || "");
   const [avatarFile, setAvatarFile] = useState(null);
@@ -16,9 +16,7 @@ const Mypage = () => {
       }
     };
   }, [previewUrl]);
-  useEffect(() => {
-    console.log("previewUrl", previewUrl);
-  }, []);
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -35,6 +33,7 @@ const Mypage = () => {
 
     try {
       let avatarUrl = user.user_metadata?.avatar_url;
+
       if (avatarFile) {
         const fileName = `${user.id}-${Date.now()}`;
         const { data, error } = await supabase.storage
@@ -62,6 +61,12 @@ const Mypage = () => {
 
       if (error) throw error;
       alert("프로필이 업데이트 되었습니다.");
+      setIsEditing(false);
+      setUser({
+        ...user,
+        name: newName,
+        avatar_url: avatarFile ? avatarUrl : user.avatar_url,
+      });
     } catch (error) {
       console.error(error);
       alert("업데이트 실패");
@@ -92,7 +97,7 @@ const Mypage = () => {
             ) : user.avatar_url ? (
               <img src={user.avatar_url} alt="유저이미지" />
             ) : (
-              <img src="/default_icon.png" alt="기본 유저 이미지" />
+              <img src="/icon/ico_default_profile.png" alt="기본 유저 이미지" />
             )}
           </div>
           <form onSubmit={handleSubmit}>
@@ -116,7 +121,7 @@ const Mypage = () => {
             {user.avatar_url ? (
               <img src={user.avatar_url} alt="유저이미지" />
             ) : (
-              <img src="/default_icon.png" alt="기본 유저 이미지" />
+              <img src="/icon/ico_default_profile.png" alt="기본 유저 이미지" />
             )}
           </div>
           <div>유저 Email: {user.email}</div>

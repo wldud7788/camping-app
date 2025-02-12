@@ -1,6 +1,7 @@
+import "./Header.css";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../shared/AuthContext";
+import { AuthContext } from "../shared/contexts/AuthContext";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
@@ -8,7 +9,7 @@ const Header = () => {
   return (
     <header className="header">
       <Link to="/">
-        <img src="/logo.png" alt="홈으로가기" />
+        <img src="/logo/logo.png" alt="홈으로가기" />
       </Link>
       <div>
         {user ? (
@@ -17,7 +18,7 @@ const Header = () => {
               {user.avatar_url ? (
                 <img src={user.avatar_url} />
               ) : (
-                <img src="/default_icon.png" />
+                <img src="/icon/ico_default_profile.png" />
               )}
             </Link>
           </div>

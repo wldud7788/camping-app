@@ -1,0 +1,55 @@
+.camping_card {
+  position: relative;
+  width: 280px;
+}
+.camping_card .camping_imgbox {
+  width: 100%;
+  height: 180px;
+  border-radius: 15px;
+}
+.camping_card .camping_imgbox img {
+  object-fit: cover;
+}
+.camping_card .camping_info {
+  padding: 20px 15px;
+  border: 1px solid #e6d8d8c7;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+.camping_card .camping_info .name {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.camping_card .camping_info .addr {
+  font-size: 12px;
+  margin-bottom: 10px;
+  background-image: url("/icon/ico_location.svg");
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  background-position: left center;
+}
+.camping_card .camping_info .intro {
+  font-size: 12px;
+  min-height: 50px;
+  margin-bottom: 10px;
+  color: #7f7f7f;
+}
+.camping_card .camping_info .induty {
+  font-size: 12px;
+  background-color: #ffe7d5;
+  color: #ff7600;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

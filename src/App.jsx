@@ -1,15 +1,18 @@
 import "./App.css";
-import { AuthProvider } from "./shared/AuthContext";
-import AppRoutes from "./shared/AppRoutes";
-import Layout from "./shared/Layout";
-
+import Layout from "./layouts/Layout";
+import AppRoutes from "./routes/AppRoutes";
+import { AuthProvider } from "./shared/contexts/AuthContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 function App() {
   return (
-    <AuthProvider>
-      <Layout>
-        <AppRoutes />
-      </Layout>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Layout>
+          <AppRoutes />
+        </Layout>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 

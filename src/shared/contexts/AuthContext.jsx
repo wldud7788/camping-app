@@ -1,20 +1,22 @@
 import { createContext } from "react";
-import { supabase } from "../supabaseClient";
+import { validateForm } from "../../components/auth/validators";
 import { toast } from "react-toastify";
+import { ERROR_MESSAGES } from "../constants/messages";
+import { supabase } from "../supabase/supabaseClient";
 import { useAuth } from "../hooks/useAuth";
-import { validateForm } from "../utils/validators";
-import { ERROR_MESSAGES } from "../utils/constants/messages";
+import PropTypes from "prop-types";
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const { isAuthenticated, isLoading, setIsLoading, user, setUser } = useAuth();
+
   const signUp = async (email, password, nickname) => {
     setIsLoading(true);
     try {
       if (!(await validateForm(email, password, "signUp"))) return false;
 
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -81,9 +83,14 @@ export const AuthProvider = ({ children }) => {
         signUp,
         signOut,
         user,
+        setUser,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
+};
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

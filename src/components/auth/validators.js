@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
-import { ERROR_MESSAGES } from "./constants/messages";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../../shared/supabase/supabaseClient";
+import { ERROR_MESSAGES } from "../../shared/constants/messages";
 
 export const validateForm = async (email, password, mode) => {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

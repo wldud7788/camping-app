@@ -1,0 +1,38 @@
+.camping_overview_section {
+  display: flex;
+}
+.camping_detail .camping_imgbox {
+  width: calc(100% - 500px);
+}
+.camping_detail .camping_info {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+}
+.camping_detail .camping_info h1 {
+  font-size: 22px;
+  font-weight: bold;
+}
+.camping_detail .camping_info .addr {
+  font-size: 13px;
+  color: #7f7f7f;
+  background-image: url("/icon/ico_location.svg");
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  background-position: left center;
+}
+.camping_detail .camping_info .tel {
+  font-size: 13px;
+}
+.camping_detail .camping_info .induty_container {
+  display: flex;
+  gap: 10px;
+}
+.camping_detail .camping_info .induty,
+.site_bottm {
+  font-size: 12px;
+  background-color: #ffe7d5;
+  color: #ff7600;
+  padding: 5px 8px;
+  border-radius: 5px;
+}

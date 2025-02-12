@@ -1,4 +1,4 @@
-import { supabase } from "../supabaseClient";
+import { supabase } from "../../shared/supabase/supabaseClient";
 
 export default function SocialLogin() {
   async function signInWithKakao() {
@@ -23,8 +23,13 @@ export default function SocialLogin() {
   }
   return (
     <div className="social_wrapper">
-      <button onClick={signInWithKakao}>카카오로그인</button>
-      <button onClick={signInWithGoogle}>구글로그인</button>
+      <h5>소셜로 간편하게 로그인하세요!</h5>
+      <button className="kakao" onClick={signInWithKakao}>
+        카카오로그인
+      </button>
+      <button className="google" onClick={signInWithGoogle}>
+        구글로그인
+      </button>
     </div>
   );
 }
