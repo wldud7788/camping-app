@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import Home from "../pages/Home";
+
 import SignIn from "../pages/(auth)/SignIn";
 import SignUp from "../pages/(auth)/SignUp";
 import { useContext } from "react";
@@ -8,6 +8,7 @@ import { Camping } from "../pages/Camping";
 import { CampingDetail } from "../pages/CampingDetail";
 import Mypage from "../pages/(auth)/Mypage";
 import { AuthContext } from "../shared/contexts/AuthContext";
+import { Home } from "../pages/Home";
 
 const AppRoutes = () => {
   const { isAuthenticated, isLoading } = useContext(AuthContext);

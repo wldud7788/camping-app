@@ -3,8 +3,9 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import { AuthContext } from "../../shared/contexts/AuthContext";
+import PropTypes from "prop-types";
 
-const AuthForm = ({ mode }) => {
+export const AuthForm = ({ mode }) => {
   const nav = useNavigate();
   const { isLoading, signIn, signUp } = useContext(AuthContext);
   const [formData, setFormData] = useState({
@@ -54,7 +55,7 @@ const AuthForm = ({ mode }) => {
   ];
 
   return (
-    <>
+    <div className="auth_form_wrapper">
       <div className="auth_form">
         <div className="auth_image_wapper">
           <img src="/bg/bg_auth_form.png" alt="캠핑일러스트" />
@@ -93,8 +94,10 @@ const AuthForm = ({ mode }) => {
           <SocialLogin />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default AuthForm;
+AuthForm.propTypes = {
+  mode: PropTypes.oneOf(["signIn", "signUp"]).isRequired,
+};

@@ -1,0 +1,58 @@
+export const MENU_ITEMS = [
+  {
+    id: "auto-camping",
+    link: "/",
+    img: "/icon/ico_auto_camping.png",
+    alt: "오토캠핑 이미지",
+    text: "오토캠핑",
+  },
+  {
+    id: "caravan",
+    link: "/",
+    img: "/icon/ico_caravan.png",
+    alt: "카라반 이미지",
+    text: "카라반",
+  },
+  {
+    id: "forest-camping",
+    link: "/",
+    img: "/icon/ico_forest.png",
+    alt: "숲속캠핑 이미지",
+    text: "숲속캠핑",
+  },
+  {
+    id: "backpacking",
+    link: "/",
+    img: "/icon/ico_backpacking.png",
+    alt: "백패킹 이미지",
+    text: "백패킹",
+  },
+  {
+    id: "glamping",
+    link: "/",
+    img: "/icon/ico_glamping.png",
+    alt: "글램핑 이미지",
+    text: "글램핑 ",
+  },
+  {
+    id: "guesthouse",
+    link: "/",
+    img: "/icon/ico_guesthouse.png",
+    alt: "펜션 이미지",
+    text: "펜션션",
+  },
+  {
+    id: "pet-frinedly",
+    link: "/",
+    img: "/icon/ico_animal.svg",
+    alt: "반려견 동반 이미지",
+    text: "반려견 동반",
+  },
+  {
+    id: "camping-tip",
+    link: "/",
+    img: "/icon/ico_honey.svg",
+    alt: "캠핑꿀팁 이미지",
+    text: "캠핑꿀팁",
+  },
+];

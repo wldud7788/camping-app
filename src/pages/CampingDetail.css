@@ -1,13 +1,43 @@
+.camping_detail {
+  margin-top: 30px;
+}
+.camping_detail dl {
+  margin-bottom: 20px;
+}
+.camping_detail dt {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
 .camping_overview_section {
   display: flex;
+  margin-bottom: 30px;
+  height: 400px;
 }
 .camping_detail .camping_imgbox {
   width: calc(100% - 500px);
+  display: flex;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.camping_detail .camping_imgbox img {
+  object-fit: cover;
+  height: auto;
+  width: 100%;
 }
 .camping_detail .camping_info {
-  width: 100%;
-  max-width: 500px;
+  width: 500px;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  padding: 20px;
+  margin-left: 20px;
+  padding: 20px;
 }
 .camping_detail .camping_info h1 {
   font-size: 22px;
@@ -21,6 +51,16 @@
   padding-left: 20px;
   background-position: left center;
 }
+.camping_detail .camping_info .star {
+  background-image: url("/icon/ico_star.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 22px;
+}
+.camping_detail .camping_info .star::after {
+  content: "|";
+  margin: 0 10px;
+}
 .camping_detail .camping_info .tel {
   font-size: 13px;
 }
@@ -28,11 +68,48 @@
   display: flex;
   gap: 10px;
 }
-.camping_detail .camping_info .induty,
-.site_bottm {
+
+/* tag 디자인 분리 start */
+.tag_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tag {
   font-size: 12px;
   background-color: #ffe7d5;
   color: #ff7600;
   padding: 5px 8px;
   border-radius: 5px;
+  font-weight: 600;
+}
+/* tag 디자인 분리 end */
+
+/* dt 아이콘 배경 start*/
+.camping_detail .camping_info_detail .icon_bg {
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 40px;
+}
+.camping_detail .camping_info_detail .fclty {
+  background-image: url("/icon/ico_camp_fclty.svg");
+}
+.camping_detail .camping_info_detail .bulb {
+  background-image: url("/icon/ico_camp_bulb.svg");
+}
+/* dt 아이콘 배경 end*/
+
+@media screen and (max-width: 1023px) {
+  .camping_overview_section {
+    flex-direction: column;
+    height: auto;
+    gap: 50px;
+  }
+  .camping_detail .camping_imgbox {
+    width: 100%;
+  }
+  .camping_detail .camping_info {
+    width: 100%;
+    margin-left: 0;
+  }
 }

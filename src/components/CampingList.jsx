@@ -24,8 +24,8 @@ export const CampingList = () => {
   if (isLoading) return <div>로딩중...</div>;
   if (error) return <div>에러발생: {error.message}</div>;
   return (
-    <div>
-      <h1>캠핑장 목록</h1>
+    <div className="camping_list_wrapper">
+      <h1>캠핑장 리스트</h1>
       <div className="camping_list">
         {data?.pages.map((page) =>
           page.map((campingData) => (

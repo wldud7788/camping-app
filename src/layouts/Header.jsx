@@ -8,9 +8,14 @@ const Header = () => {
   console.log(user);
   return (
     <header className="header">
-      <Link to="/">
+      <Link className="logo" to="/">
         <img src="/logo/logo.png" alt="홈으로가기" />
       </Link>
+      <nav>
+        <Link>캠핑장 검색</Link>
+        <Link to="/camping">캠핑장 둘러보기</Link>
+        <Link>커뮤니티</Link>
+      </nav>
       <div>
         {user ? (
           <div className="user_img">

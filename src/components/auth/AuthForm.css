@@ -1,29 +1,31 @@
+.auth_form_wrapper {
+  height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .auth_form {
+  position: relative;
   width: 100%;
   background-color: rgb(255 207 169);
   display: flex;
-  height: calc(100vh - 200px);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   border-radius: 15px;
   overflow: hidden;
 }
 .auth_form .auth_image_wapper {
   width: 50%;
+  height: 600px;
   overflow: hidden;
-  position: relative;
 }
 .auth_form .auth_image_wapper img {
   width: 100%;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 .auth_form .auth_input_wrapper {
   width: 50%;
+  height: 600px;
   text-align: center;
   background: #ff811fab;
   color: white;
@@ -103,11 +105,9 @@
   .auth_form .auth_image_wapper {
     position: absolute;
     width: 100%;
-    height: calc(100vh - 200px);
   }
   .auth_form .auth_input_wrapper {
     width: 100%;
-    height: calc(100vh - 200px);
     z-index: 99;
     backdrop-filter: blur(3px);
   }
