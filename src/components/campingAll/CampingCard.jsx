@@ -1,6 +1,6 @@
 import "./CampingCard.css";
 import PropTypes from "prop-types";
-import { LikeButton } from "./common/LikeButton";
+import { LikeButton } from "../common/LikeButton";
 import { Link } from "react-router-dom";
 
 export const CampingCard = ({ campingData }) => {
@@ -10,6 +10,7 @@ export const CampingCard = ({ campingData }) => {
         <img
           className="camping_imgbox"
           src={campingData.firstImageUrl || "/img/camp_default.jpg"}
+          alt="캠핑장 이미지"
         />
         <LikeButton />
         <div className="camping_info">
