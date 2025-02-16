@@ -24,4 +24,23 @@ export const campingAPi = {
       throw error;
     }
   },
+
+  searchList: async (
+    keyword,
+    pageNo = 1,
+    numOfRows = CAMPING_API.TOTAL_COUNT
+  ) => {
+    try {
+      const encodedKeyword = encodeURI(keyword);
+
+      const response = await axios.get(
+        `${CAMPING_API.BASE_URL}/searchList?serviceKey=${CAMPING_API.SERVICE_KEY}&MobileOS=${CAMPING_API.MobileOS}&MobileApp=${CAMPING_API.MobileApp}$keyword=${encodedKeyword}&pageNo=${pageNo}&numOfRows=${numOfRows}&_type=${CAMPING_API._type}`
+      );
+      const data = response.data.response.body;
+      return data;
+    } catch (error) {
+      console.log("Search API ERROR ", error.message);
+      throw error;
+    }
+  },
 };

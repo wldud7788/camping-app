@@ -1,7 +1,7 @@
 import "./CampingList.css";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { useInfiniteCampings } from "../shared/hooks/useInfiniteCampigs";
+import { useInfiniteCampings } from "../../shared/hooks/useInfiniteCampigs";
 import { CampingCard } from "./CampingCard";
 
 export const CampingList = () => {
