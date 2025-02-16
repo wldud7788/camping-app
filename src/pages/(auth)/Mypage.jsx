@@ -1,7 +1,7 @@
 import "./Mypage.css";
 import { useState } from "react";
 import { MypageProfile } from "@/components/auth/MypageProfile.jsx";
-import { MypageEdit } from "@/components/auth/MyPageEdit.jsx";
+import { MypageEdit } from "@/components/auth/MypageEdit.jsx";
 const Mypage = () => {
   const [isEditing, setIsEditing] = useState(false);
   return (
