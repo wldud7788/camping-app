@@ -12,4 +12,9 @@ export default defineConfig({
       "@hooks": "/src/hooks",
     },
   },
+  css: {
+    modules: {
+      localsConvention: "camelCase",
+    },
+  },
 });
