@@ -2,7 +2,7 @@ import { useInfiniteCampings } from "@/shared/hooks/useInfiniteCampigs";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { CampingCard } from "./CampingCard";
-import "./CampingList.css";
+import "@/components/campingAll/CampingList.css";
 
 export const CampingList = () => {
   const { ref, inView } = useInView();
