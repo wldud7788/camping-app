@@ -1,5 +1,5 @@
 import { useInfiniteCampings } from "@/shared/hooks/useInfiniteCampigs";
-import "./CampingList.css";
+import "@/components/campingAll/CampingList.css";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { CampingCard } from "./CampingCard";
