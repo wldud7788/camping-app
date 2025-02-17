@@ -19,7 +19,7 @@ export const CampingDetail = () => {
     <div className="camping_detail">
       <CampingOverview campingData={campingData} />
       <CampingInfoDetail campingData={campingData} />
-      <CampingComment campingData={campingData} />
+      <CampingComment contentId={campingData.contentId} />
     </div>
   );
 };
