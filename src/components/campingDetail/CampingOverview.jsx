@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const CampingOverview = ({ campingData }) => {
   const {
     firstImageUrl,
@@ -75,4 +77,20 @@ export const CampingOverview = ({ campingData }) => {
       </div>
     </>
   );
+};
+
+CampingOverview.propTypes = {
+  campingData: PropTypes.shape({
+    firstImageUrl: PropTypes.string,
+    facltNm: PropTypes.string,
+    addr1: PropTypes.string,
+    lineIntro: PropTypes.string,
+    siteBottomCl1: PropTypes.string,
+    siteBottomCl2: PropTypes.string,
+    siteBottomCl3: PropTypes.string,
+    siteBottomCl4: PropTypes.string,
+    siteBottomCl5: PropTypes.string,
+    tel: PropTypes.string,
+    induty: PropTypes.string,
+  }),
 };

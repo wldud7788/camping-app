@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const CampingInfoDetail = ({ campingData }) => {
   const { animalCmgCl, intro, featureNm, sbrsCl, posblFcltyCl } =
     campingData || {};
@@ -63,4 +65,14 @@ export const CampingInfoDetail = ({ campingData }) => {
       </div>
     </>
   );
+};
+
+CampingInfoDetail.propTypes = {
+  campingData: PropTypes.shape({
+    animalCmgCl: PropTypes.string,
+    intro: PropTypes.string,
+    featureNm: PropTypes.string,
+    sbrsCl: PropTypes.string,
+    posblFcltyCl: PropTypes.string,
+  }),
 };

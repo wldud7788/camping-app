@@ -4,6 +4,7 @@ import { CAMPING_API } from "../shared/api/campingApi";
 import { useCampings } from "../shared/hooks/useCampings";
 import { CampingOverview } from "../components/campingDetail/CampingOverview";
 import { CampingInfoDetail } from "../components/campingDetail/CampingInfoDetail";
+import { CampingComment } from "../components/campingDetail/CampingComment";
 
 export const CampingDetail = () => {
   const params = useParams();
@@ -18,6 +19,7 @@ export const CampingDetail = () => {
     <div className="camping_detail">
       <CampingOverview campingData={campingData} />
       <CampingInfoDetail campingData={campingData} />
+      <CampingComment campingData={campingData} />
     </div>
   );
 };
