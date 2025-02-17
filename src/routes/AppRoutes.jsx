@@ -6,9 +6,9 @@ import { CampingDetail } from "../pages/CampingDetail";
 import { AuthContext } from "../shared/contexts/AuthContext";
 import { Home } from "../pages/Home";
 import { CampingAll } from "../pages/CampingAll";
-import SignIn from "../pages/SignIn";
-import SignUp from "../pages/SignUp";
-import Mypage from "../pages/Mypage";
+import SignIn from "../pages/(auth)/SignIn";
+import SignUp from "../pages/(auth)/SignUp";
+import Mypage from "../pages/(auth)/Mypage";
 
 const AppRoutes = () => {
   const { isAuthenticated, isLoading } = useContext(AuthContext);

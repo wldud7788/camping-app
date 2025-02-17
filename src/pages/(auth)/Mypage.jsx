@@ -1,7 +1,7 @@
 import "./Mypage.css";
 import { useState } from "react";
-import { MypageProfile } from "../components/auth/MypageProfile";
-import { MypageEdit } from "../components/auth/MypageEdit";
+import { MypageProfile } from "../../components/auth/MypageProfile";
+import { MypageEdit } from "../../components/auth/MypageEdit";
 const Mypage = () => {
   const [isEditing, setIsEditing] = useState(false);
   return (
