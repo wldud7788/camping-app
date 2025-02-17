@@ -1,12 +1,18 @@
+import "./CampingComment.css";
 import PropTypes from "prop-types";
+import { CampingCommentForm } from "./comment/CampingCommentForm";
+import { CampingCommentList } from "./comment/CampingCommentList";
 
-export const CampingComment = ({ campingData }) => {
-  console.log(campingData);
-  return <div>안녕</div>;
+export const CampingComment = ({ contentId }) => {
+  return (
+    <div className="comment_form_wrapper">
+      <h2>댓글</h2>
+      <CampingCommentForm contentId={contentId} />
+      <CampingCommentList contentId={contentId} />
+    </div>
+  );
 };
 
 CampingComment.propTypes = {
-  campingData: PropTypes.shape({
-    contentId: PropTypes.string,
-  }),
+  contentId: PropTypes.string.isRequired,
 };

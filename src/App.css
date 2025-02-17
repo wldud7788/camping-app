@@ -20,3 +20,6 @@ main {
   text-align: center;
   font-size: 12px;
 }
+button {
+  cursor: pointer;
+}

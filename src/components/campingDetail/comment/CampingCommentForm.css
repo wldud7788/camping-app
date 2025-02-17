@@ -1,0 +1,18 @@
+.comment_form_wrapper h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.comment_form_wrapper .comment_form {
+  display: flex;
+}
+.comment_form_wrapper .comment_form input {
+  width: 100%;
+}
+.comment_form_wrapper .comment_form button {
+  width: 100px;
+  background: #ff7800;
+  border: none;
+  border-radius: 15px;
+  color: white;
+}
