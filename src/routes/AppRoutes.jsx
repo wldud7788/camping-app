@@ -1,14 +1,14 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 
-import SignIn from "../pages/(auth)/SignIn";
-import SignUp from "../pages/(auth)/SignUp";
 import { useContext } from "react";
 import { Search } from "../pages/Search";
 import { CampingDetail } from "../pages/CampingDetail";
-import Mypage from "../pages/(auth)/Mypage";
 import { AuthContext } from "../shared/contexts/AuthContext";
 import { Home } from "../pages/Home";
 import { CampingAll } from "../pages/CampingAll";
+import SignIn from "../pages/(auth)/SignIn";
+import SignUp from "../pages/(auth)/SignUp";
+import Mypage from "../pages/(auth)/Mypage";
 
 const AppRoutes = () => {
   const { isAuthenticated, isLoading } = useContext(AuthContext);
