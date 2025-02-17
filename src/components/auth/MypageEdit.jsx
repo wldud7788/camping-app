@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../shared/contexts/AuthContext";
-import { supabase } from "../../shared/supabase/supabaseClient";
-import { ProfileAvatar } from "./ProfileAvatar";
 import PropTypes from "prop-types";
+import { AuthContext } from "@/shared/contexts/AuthContext";
+import { ProfileAvatar } from "./ProfileAvatar";
+import { supabase } from "@/shared/supabase/supabaseClient";
 
 export const MypageEdit = ({ setIsEditing }) => {
   const { user, isLoading, setUser } = useContext(AuthContext);

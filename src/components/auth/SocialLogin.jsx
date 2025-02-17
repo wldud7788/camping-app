@@ -1,4 +1,4 @@
-import { supabase } from "../../shared/supabase/supabaseClient";
+import { supabase } from "@/shared/supabase/supabaseClient";
 
 export default function SocialLogin() {
   async function signInWithKakao() {

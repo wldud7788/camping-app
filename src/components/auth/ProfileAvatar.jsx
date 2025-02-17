@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AuthContext } from "../../shared/contexts/AuthContext";
 import PropTypes from "prop-types";
+import { AuthContext } from "@/shared/contexts/AuthContext";
 
 export const ProfileAvatar = ({ previewUrl }) => {
   const { user } = useContext(AuthContext);

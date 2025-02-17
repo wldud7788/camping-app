@@ -1,4 +1,4 @@
-import { useCampings } from "../../shared/hooks/useCampings";
+import { useCampings } from "@/shared/hooks/useCampings";
 import { CampingCard } from "../campingAll/CampingCard";
 
 export const CampRecommend = () => {

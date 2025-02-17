@@ -1,9 +1,9 @@
+import { useCampings } from "@/shared/hooks/useCampings";
 import "./CampingDetail.css";
 import { useParams } from "react-router-dom";
-import { CAMPING_API } from "../shared/api/campingApi";
-import { useCampings } from "../shared/hooks/useCampings";
-import { CampingOverview } from "../components/campingDetail/CampingOverview";
-import { CampingInfoDetail } from "../components/campingDetail/CampingInfoDetail";
+import { CAMPING_API } from "@/shared/api/campingApi";
+import { CampingOverview } from "@/components/campingDetail/CampingOverview";
+import { CampingInfoDetail } from "@/components/campingDetail/CampingInfoDetail";
 
 export const CampingDetail = () => {
   const params = useParams();

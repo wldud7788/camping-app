@@ -1,9 +1,9 @@
 import "./AuthForm.css";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SocialLogin from "./SocialLogin";
-import { AuthContext } from "../../shared/contexts/AuthContext";
 import PropTypes from "prop-types";
+import { AuthContext } from "@/shared/contexts/AuthContext";
+import SocialLogin from "./SocialLogin";
 
 export const AuthForm = ({ mode }) => {
   const nav = useNavigate();

@@ -1,7 +1,7 @@
+import { useCampings } from "@/shared/hooks/useCampings";
 import "./Search.css";
+import { SearchCampingCard } from "@/components/search/SearchCampingCard";
 // import { useParams } from "react-router-dom";
-import { useCampings } from "../shared/hooks/useCampings";
-import { SearchCampingCard } from "../components/search/SearchCampingCard";
 
 export const Search = () => {
   const { data, error } = useCampings();

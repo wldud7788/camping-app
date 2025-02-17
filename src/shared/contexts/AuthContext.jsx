@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import { validateForm } from "../../components/auth/validators";
 import { toast } from "react-toastify";
-import { ERROR_MESSAGES } from "../constants/messages";
-import { supabase } from "../supabase/supabaseClient";
-import { useAuth } from "../hooks/useAuth";
 import PropTypes from "prop-types";
+import { validateForm } from "@/components/auth/validators";
+import { useAuth } from "../hooks/useAuth";
+import { supabase } from "../supabase/supabaseClient";
+import { ERROR_MESSAGES } from "../constants/messages";
 
 export const AuthContext = createContext(null);
 

@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { AuthContext } from "../../shared/contexts/AuthContext";
-import { ProfileAvatar } from "./ProfileAvatar";
 import PropTypes from "prop-types";
+import { AuthContext } from "@/shared/contexts/AuthContext";
+import { ProfileAvatar } from "./ProfileAvatar";
 
 export const MypageProfile = ({ setIsEditing }) => {
   const { user, signOut } = useContext(AuthContext);

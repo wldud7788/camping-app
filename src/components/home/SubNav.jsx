@@ -1,5 +1,5 @@
+import { MENU_ITEMS } from "@/shared/constants/menuItems";
 import { Link } from "react-router-dom";
-import { MENU_ITEMS } from "../../shared/constants/menuItems";
 
 export const SubNav = () => {
   return (

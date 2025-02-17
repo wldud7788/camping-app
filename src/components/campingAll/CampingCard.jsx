@@ -1,7 +1,7 @@
 import "./CampingCard.css";
 import PropTypes from "prop-types";
-import { LikeButton } from "../common/LikeButton";
 import { Link } from "react-router-dom";
+import { LikeButton } from "../common/LikeButton";
 
 export const CampingCard = ({ campingData }) => {
   return (
