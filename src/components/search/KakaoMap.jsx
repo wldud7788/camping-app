@@ -1,110 +1,79 @@
 import { useNavigate } from "react-router-dom";
 import "./KakaoMap.css";
 import { useEffect, useState } from "react";
-// const { kakao } = window;
+import {
+  createMarker,
+  setupMarkerEvents,
+} from "../../shared/hooks/map/useKakaoMapMarer";
+import { useKakaoMapScript } from "../../shared/hooks/map/useKakaoMapScript";
+import { initializeMap, moveMapCenter } from "../../shared/utils/mapUtils";
+import PropTypes from "prop-types";
 
-export const KakaoMap = ({ displayData, isLoading, selectedCamping }) => {
+export const KakaoMap = ({ displayData, selectedCamping }) => {
   const nav = useNavigate();
-  const [mapLoaded, setMapLoaded] = useState(false);
-  // 초기 지도의 위도 경도값 저장
-  const [currentLocation, setCurrentLocation] = useState({
-    latitude: 37.5666805,
-    longitude: 126.9784147,
-  });
-  const { latitude, longitude } = currentLocation;
+  const { mapLoaded } = useKakaoMapScript();
+  const [map, setMap] = useState(null);
 
-  // 카카오맵 스크립트 로드
+  // 초기값
+  const initMapCenter = {
+    mapY: 37.7278127,
+    mapX: 127.5112565,
+  };
+
+  // 초기 맵 생성
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${
-      import.meta.env.VITE_KAKAO_MAP_API_KEY
-    }&autoload=false`;
-    script.async = true;
-
-    script.onload = () => {
-      window.kakao.maps.load(() => {
-        setMapLoaded(true);
-      });
-    };
-
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
-  useEffect(() => {
-    // 데이터 로딩 완료 후 위치 업데이트
-
-    if (!selectedCamping && !isLoading && displayData?.[0]) {
-      // 검색결과의 첫 번째 위도 경도 세팅
-      setCurrentLocation({
-        latitude: displayData[0].mapY,
-        longitude: displayData[0].mapX,
-      });
-    }
-  }, [isLoading, displayData]);
-
-  // selectedComaping이 변경될때마다 실행
-  useEffect(() => {
-    if (selectedCamping) {
-      setCurrentLocation({
-        latitude: selectedCamping.mapY,
-        longitude: selectedCamping.mapX,
-      });
-    }
-  }, [selectedCamping]);
-
-  // 데이터 로딩 완료 후 위치 업데이트
-  useEffect(() => {
-    // 맵이 로드되지 않았으면 실행하지 않음
     if (!mapLoaded) return;
+
     const container = document.getElementById("map");
-    const options = {
-      center: new window.kakao.maps.LatLng(latitude, longitude),
-      level: 2,
-    };
-    const map = new window.kakao.maps.Map(container, options);
+    const newMap = initializeMap(container, initMapCenter);
+    setMap(newMap);
 
-    // 마커가 표시될 위치
-    const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
+    // 초기 마커 생성
+    const markerPosition = new window.kakao.maps.LatLng(
+      initMapCenter.mapY,
+      initMapCenter.mapX
+    );
+    const marker = createMarker(markerPosition, newMap);
+    setupMarkerEvents(marker, newMap, initMapCenter, nav);
+  }, [mapLoaded, nav]);
 
-    // 마커 생성
-    const marker = new window.kakao.maps.Marker({
-      position: markerPosition,
-    });
+  // displayData 변경시 지도 업데이트
+  useEffect(() => {
+    if (!map || !displayData || displayData.length === 0) return;
 
-    // 마커가 지도 위에 표시되도록 설정
-    marker.setMap(map);
+    const firstLocation = displayData[0];
+    const newCenter = moveMapCenter(map, firstLocation);
 
-    if (selectedCamping) {
-      // 마커에 클릭 이벤트를 등록하고 싶다면
-      window.kakao.maps.event.addListener(marker, "click", function () {
-        nav(`/camping/${selectedCamping?.contentId}`);
-      });
+    // 새 마커 생성
+    const marker = createMarker(newCenter, map);
+    setupMarkerEvents(marker, map, firstLocation, nav);
+  }, [displayData, map, nav]);
 
-      // 인포 윈도우를 설정
-      const infoWindowContent = `<div><p>${selectedCamping?.facltNm}</p><p>${selectedCamping?.addr1}</p></div>`;
-      const infoWindow = new window.kakao.maps.InfoWindow({
-        content: infoWindowContent,
-      });
+  // selectedCamping 변경시 지도 업데이트
+  useEffect(() => {
+    if (!map || !selectedCamping) return;
 
-      // 마커에 마우스 오버 이벤트를 등록하면 인포 윈도우가 표시
-      window.kakao.maps.event.addListener(marker, "mouseover", function () {
-        infoWindow.open(map, marker);
-      });
+    const newCenter = moveMapCenter(map, selectedCamping);
 
-      // 마커에 마우스 아웃 시 인포윈도우 닫기
-      window.kakao.maps.event.addListener(marker, "mouseout", function () {
-        infoWindow.close();
-      });
-    }
-    return () => {
-      marker.setMap(null);
-    };
-  }, [latitude, longitude, selectedCamping, nav]);
-  console.log(selectedCamping);
+    // 새 마커 생성
+    const marker = createMarker(newCenter, map);
+    setupMarkerEvents(marker, map, selectedCamping, nav);
+  }, [selectedCamping, map, nav]);
 
   return <div id="map"></div>;
+};
+const campingShape = PropTypes.shape({
+  contentId: PropTypes.string.isRequired,
+  facltNm: PropTypes.string.isRequired,
+  lineIntro: PropTypes.string,
+  intro: PropTypes.string,
+  allar: PropTypes.string,
+  mapX: PropTypes.string.isRequired,
+  mapY: PropTypes.string.isRequired,
+  // 필요한 다른 필드들도 추가 가능
+});
+
+KakaoMap.propTypes = {
+  displayData: PropTypes.arrayOf(campingShape),
+  selectedCamping: PropTypes.oneOfType([PropTypes.null, campingShape]),
 };
