@@ -46,7 +46,6 @@ const AppRoutes = () => {
       {/* Common Routes */}
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/search/:id" element={<Search />} />
       <Route path="/camping" element={<CampingAll />} />
       <Route path="/camping/:id" element={<CampingDetail />} />
       {/* 404 Route */}

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import "./SearchCampingCard.css";
-export const SearchCampingCard = ({ campingData }) => {
+export const SearchCampingCard = ({ campingData, onClick }) => {
   return (
-    <div className="search_camping_card">
+    <div className="search_camping_card" onClick={onClick}>
       <div className="search_img_box">
         <img
           src={campingData.firstImageUrl || "/img/camp_default.jpg"}

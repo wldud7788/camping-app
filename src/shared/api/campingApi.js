@@ -31,10 +31,10 @@ export const campingAPi = {
     numOfRows = CAMPING_API.TOTAL_COUNT
   ) => {
     try {
-      const encodedKeyword = encodeURI(keyword);
+      const encodedKeyword = encodeURIComponent(keyword);
 
       const response = await axios.get(
-        `${CAMPING_API.BASE_URL}/searchList?serviceKey=${CAMPING_API.SERVICE_KEY}&MobileOS=${CAMPING_API.MobileOS}&MobileApp=${CAMPING_API.MobileApp}$keyword=${encodedKeyword}&pageNo=${pageNo}&numOfRows=${numOfRows}&_type=${CAMPING_API._type}`
+        `${CAMPING_API.BASE_URL}/searchList?serviceKey=${CAMPING_API.SERVICE_KEY}&MobileOS=${CAMPING_API.MobileOS}&MobileApp=${CAMPING_API.MobileApp}&keyword=${encodedKeyword}&pageNo=${pageNo}&numOfRows=${numOfRows}&_type=${CAMPING_API._type}`
       );
       const data = response.data.response.body;
       return data;
