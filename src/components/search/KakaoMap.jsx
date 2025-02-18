@@ -1,16 +1,38 @@
 import { useNavigate } from "react-router-dom";
 import "./KakaoMap.css";
 import { useEffect, useState } from "react";
-const { kakao } = window;
+// const { kakao } = window;
 
 export const KakaoMap = ({ displayData, isLoading, selectedCamping }) => {
   const nav = useNavigate();
+  const [mapLoaded, setMapLoaded] = useState(false);
   // 초기 지도의 위도 경도값 저장
   const [currentLocation, setCurrentLocation] = useState({
     latitude: 37.5666805,
     longitude: 126.9784147,
   });
   const { latitude, longitude } = currentLocation;
+
+  // 카카오맵 스크립트 로드
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${
+      import.meta.env.VITE_KAKAO_MAP_API_KEY
+    }&autoload=false`;
+    script.async = true;
+
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        setMapLoaded(true);
+      });
+    };
+
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   useEffect(() => {
     // 데이터 로딩 완료 후 위치 업데이트
@@ -36,18 +58,20 @@ export const KakaoMap = ({ displayData, isLoading, selectedCamping }) => {
 
   // 데이터 로딩 완료 후 위치 업데이트
   useEffect(() => {
+    // 맵이 로드되지 않았으면 실행하지 않음
+    if (!mapLoaded) return;
     const container = document.getElementById("map");
     const options = {
-      center: new kakao.maps.LatLng(latitude, longitude),
+      center: new window.kakao.maps.LatLng(latitude, longitude),
       level: 2,
     };
-    const map = new kakao.maps.Map(container, options);
+    const map = new window.kakao.maps.Map(container, options);
 
     // 마커가 표시될 위치
-    const markerPosition = new kakao.maps.LatLng(latitude, longitude);
+    const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
 
     // 마커 생성
-    const marker = new kakao.maps.Marker({
+    const marker = new window.kakao.maps.Marker({
       position: markerPosition,
     });
 
@@ -56,23 +80,23 @@ export const KakaoMap = ({ displayData, isLoading, selectedCamping }) => {
 
     if (selectedCamping) {
       // 마커에 클릭 이벤트를 등록하고 싶다면
-      kakao.maps.event.addListener(marker, "click", function () {
+      window.kakao.maps.event.addListener(marker, "click", function () {
         nav(`/camping/${selectedCamping?.contentId}`);
       });
 
       // 인포 윈도우를 설정
       const infoWindowContent = `<div><p>${selectedCamping?.facltNm}</p><p>${selectedCamping?.addr1}</p></div>`;
-      const infoWindow = new kakao.maps.InfoWindow({
+      const infoWindow = new window.kakao.maps.InfoWindow({
         content: infoWindowContent,
       });
 
       // 마커에 마우스 오버 이벤트를 등록하면 인포 윈도우가 표시
-      kakao.maps.event.addListener(marker, "mouseover", function () {
+      window.kakao.maps.event.addListener(marker, "mouseover", function () {
         infoWindow.open(map, marker);
       });
 
       // 마커에 마우스 아웃 시 인포윈도우 닫기
-      kakao.maps.event.addListener(marker, "mouseout", function () {
+      window.kakao.maps.event.addListener(marker, "mouseout", function () {
         infoWindow.close();
       });
     }
@@ -82,9 +106,5 @@ export const KakaoMap = ({ displayData, isLoading, selectedCamping }) => {
   }, [latitude, longitude, selectedCamping, nav]);
   console.log(selectedCamping);
 
-  return (
-    <div id="map">
-      <a href=""></a>
-    </div>
-  );
+  return <div id="map"></div>;
 };
