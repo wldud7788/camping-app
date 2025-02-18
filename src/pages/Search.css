@@ -1,3 +1,18 @@
+.search input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  max-width: 350px;
+  width: 100%;
+}
+.search button {
+  background-color: #ff7800;
+  border: none;
+  height: 46px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  color: white;
+  width: 70px;
+}
 .search_result {
   display: flex;
   margin-top: 30px;
@@ -14,6 +29,9 @@
   border: 1px solid orange;
 }
 @media screen and (max-width: 767px) {
+  .search input {
+    width: calc(100% - 70px);
+  }
   .search_result {
     flex-direction: column;
   }
