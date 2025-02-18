@@ -8,12 +8,14 @@ import { useCampings } from "../shared/hooks/useCampings";
 import { KakaoMap } from "../components/search/KakaoMap";
 
 export const Search = () => {
+  // 서치 파람스
   const [searchParams, setSearchParams] = useSearchParams();
+
+  //입력받은 검색어
   const [searchText, setSearchText] = useState(
     searchParams.get("keyword") || ""
   );
-  const [selectedCamping, setSelectedCamping] = useState(null);
-
+  // 검색어를 디바운싱해서 저장
   const debouncedSearchText = useDebounce(searchText, 500);
 
   // 검색 결과를 위한 쿼리
@@ -26,6 +28,9 @@ export const Search = () => {
   // 현재 표시할 데이터와 로딩 상태 결정
   const displayData = debouncedSearchText ? searchResults : defaultCamping;
   const isLoading = debouncedSearchText ? isSearchLoading : isDefaultLoading;
+
+  // 선택된 캠핑장의 초기값에 초기 위도 경도 설정
+  const [selectedCamping, setSelectedCamping] = useState(null);
 
   useEffect(() => {
     // URL 파라미터 업데이트
