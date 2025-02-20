@@ -14,7 +14,7 @@ const Header = () => {
       <nav>
         <Link to="/search">캠핑장 검색</Link>
         <Link to="/camping">캠핑장 둘러보기</Link>
-        <Link>커뮤니티</Link>
+        <Link to="/chat">커뮤니티</Link>
       </nav>
       <div>
         {user ? (

@@ -10,12 +10,12 @@ export const useReadComment = (contentId) => {
         .from("comment")
         .select(
           /** 
-        profiles테이블과 조인, user_id를 forign key로 사용
-        avatar_url, email => profiles테이블에서 가져올 필드
+        users테이블과 조인, user_id를 forign key로 사용
+        avatar_url, email => users테이블에서 가져올 필드
         **/
           `
             *,
-            profiles: user_id(
+            users: user_id(
                 avatar_url,    
                 name          
             )
