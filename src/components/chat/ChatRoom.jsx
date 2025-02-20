@@ -17,21 +17,36 @@ export default function ChatRoom() {
     loadMessages();
 
     // 실시간 메시지 구독
-    const channel = supabase
-      .channel(`public_room_${roomId}`)
-      .on(
-        "postgres_changes",
-        {
-          event: "INSERT",
-          schema: "public",
-          table: "messages",
-          filter: `room_id=eq.${roomId}`,
-        },
-        async (payload) => {
-          setMessages((current) => [...current, data]);
-        }
-      )
-      .subscribe();
+    const channel = supabase.channel(`public_room_${roomId}`).on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "messages",
+        filter: `room_id=eq.${roomId}`,
+      },
+      async (payload) => {
+        // 새 메시지의 전체 정보를 조회
+
+        // payload에서 새 메시지 데이터 추출
+        const newMessage = payload.new;
+
+        // 사용자 정보 가져오기
+        const { data: userData } = await supabase
+          .from("users")
+          .select("avatar_url, name")
+          .eq("id", newMessage.user_id)
+          .single();
+
+        // 메시지와 사용자 정보 결합
+        const messageWithUser = {
+          ...newMessage,
+          users: userData,
+        };
+
+        setMessages((current) => [...current, messageWithUser]);
+      }
+    );
 
     return () => {
       channel.unsubscribe();
@@ -63,6 +78,7 @@ export default function ChatRoom() {
     e.preventDefault();
     if (!newMessage.trim() || !user) return;
 
+    // insert 후 바로 users정보까지 select
     const { data, error } = await supabase
       .from("messages")
       .insert({
