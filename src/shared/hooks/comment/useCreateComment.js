@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
-import { supabase } from "../supabase/supabaseClient";
+import { AuthContext } from "../../contexts/AuthContext";
+import { supabase } from "../../supabase/supabaseClient";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 export const useCreateComment = (contentId) => {
   const { user } = useContext(AuthContext);

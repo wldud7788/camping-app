@@ -1,7 +1,7 @@
 import "./CampingCommentForm.css";
 import { useState } from "react";
 import { useAuth } from "../../../shared/hooks/useAuth";
-import { useCreateComment } from "../../../shared/hooks/useCreateComment";
+import { useCreateComment } from "../../../shared/hooks/comment/useCreateComment";
 import PropTypes from "prop-types";
 
 export const CampingCommentForm = ({ contentId }) => {

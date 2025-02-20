@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { campingAPi } from "../api/campingApi";
+import { campingAPi } from "../../api/campingApi";
 
 export const useCampingSearch = (keyword, limit = 500) => {
   return useQuery({

@@ -1,15 +1,20 @@
 import "./CampingCommentCard.css";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { format } from "date-fns";
-import { useDeleteComment } from "../../../shared/hooks/useDeleteComment";
-import { useUpdateComment } from "../../../shared/hooks/useUpdateComment";
+import { useDeleteComment } from "../../../shared/hooks/comment/useDeleteComment";
+import { useUpdateComment } from "../../../shared/hooks/comment/useUpdateComment";
+import { AuthContext } from "../../../shared/contexts/AuthContext";
 
 export const CampingCommentCard = ({ commentData }) => {
+  const { user } = useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
   const [newComment, setNewComment] = useState("");
-  console.log(commentData);
+  console.log("commentData", commentData);
+
   const { id, users, content } = commentData;
+  console.log("user", user);
+  console.log("user", users);
   const deleteComment = useDeleteComment(commentData.content_id);
   const updateComment = useUpdateComment(commentData.content_id);
 
@@ -43,8 +48,12 @@ export const CampingCommentCard = ({ commentData }) => {
           <>
             <p className="comment">{content}</p>
             <div className="button_wrapper">
-              <button onClick={() => setIsEditing(true)}>수정</button>
-              <button onClick={() => onDeleteHandler(id)}>삭제</button>
+              {commentData?.user_id === user.id && (
+                <>
+                  <button onClick={() => setIsEditing(true)}>수정</button>
+                  <button onClick={() => onDeleteHandler(id)}>삭제</button>
+                </>
+              )}
             </div>
           </>
         ) : (
@@ -77,6 +86,7 @@ CampingCommentCard.propTypes = {
     content_id: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     created_at: PropTypes.string,
+    user_id: PropTypes.string,
     users: PropTypes.shape({
       name: PropTypes.string.isRequired,
       avatar_url: PropTypes.string.isRequired,

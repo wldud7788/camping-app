@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "../supabase/supabaseClient";
+import { supabase } from "../../supabase/supabaseClient";
 
 export const useReadComment = (contentId) => {
   const QUERY_KEY = ["comments", contentId];
