@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {
   createMarker,
   setupMarkerEvents,
-} from "../../shared/hooks/map/useKakaoMapMarer";
+} from "../../shared/hooks/map/useKakaoMapMarker";
 import { useKakaoMapScript } from "../../shared/hooks/map/useKakaoMapScript";
 import { initializeMap, moveMapCenter } from "../../shared/utils/mapUtils";
 import PropTypes from "prop-types";

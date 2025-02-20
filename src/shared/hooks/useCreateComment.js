@@ -15,7 +15,7 @@ export const useCreateComment = (contentId) => {
       const { data, error } = await supabase
         .from("comment")
         .insert([commentobj]).select(`*,
-            profiles:user_id (
+            users:user_id (
               avatar_url,
               email
             )`);
@@ -47,7 +47,7 @@ export const useCreateComment = (contentId) => {
           ...commentobj,
           id: Date.now(),
           create_at: new Date().toISOString(),
-          profiles: {
+          users: {
             avatar_url: user?.avatar_url,
             name: user?.name,
           },

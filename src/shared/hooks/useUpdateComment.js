@@ -12,7 +12,7 @@ export const useUpdateComment = (contentId) => {
         .update({ content })
         .eq("id", updateId).select(`
             *,
-            profiles:user_id (
+            users:user_id (
               avatar_url,
               email
             )

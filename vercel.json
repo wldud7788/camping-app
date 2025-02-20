@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "src": "/(signin|signup|mypage|chat|camping|search|chat/[^/]+|camping/[^/]+)",
+      "dest": "/"
+    }
+  ]
+}

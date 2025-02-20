@@ -9,7 +9,7 @@ export const CampingCommentCard = ({ commentData }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newComment, setNewComment] = useState("");
   console.log(commentData);
-  const { id, profiles, content } = commentData;
+  const { id, users, content } = commentData;
   const deleteComment = useDeleteComment(commentData.content_id);
   const updateComment = useUpdateComment(commentData.content_id);
 
@@ -30,9 +30,9 @@ export const CampingCommentCard = ({ commentData }) => {
     <>
       <div className="comment_card">
         <div className="user_info">
-          <img src={profiles.avatar_url} alt="프로필 이미지" />
+          <img src={users.avatar_url} alt="프로필 이미지" />
           <div>
-            <p className="nick">{profiles.name}</p>
+            <p className="nick">{users.name}</p>
             <p className="date">
               {commentData?.created_at &&
                 format(new Date(commentData.created_at), "yy.MM.dd HH:mm")}
@@ -77,7 +77,7 @@ CampingCommentCard.propTypes = {
     content_id: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     created_at: PropTypes.string,
-    profiles: PropTypes.shape({
+    users: PropTypes.shape({
       name: PropTypes.string.isRequired,
       avatar_url: PropTypes.string.isRequired,
     }).isRequired,

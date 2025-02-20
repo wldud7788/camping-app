@@ -9,6 +9,8 @@ import { CampingAll } from "../pages/CampingAll";
 import SignIn from "../pages/(auth)/SignIn";
 import SignUp from "../pages/(auth)/SignUp";
 import Mypage from "../pages/(auth)/Mypage";
+import { Chat } from "../pages/Chat";
+import ChatRoom from "../components/chat/ChatRoom";
 
 const AppRoutes = () => {
   const { isAuthenticated, isLoading } = useContext(AuthContext);
@@ -48,6 +50,8 @@ const AppRoutes = () => {
       <Route path="/search" element={<Search />} />
       <Route path="/camping" element={<CampingAll />} />
       <Route path="/camping/:id" element={<CampingDetail />} />
+      <Route path="/chat" element={<Chat />} />
+      <Route path="/chat/:id" element={<ChatRoom />} />
       {/* 404 Route */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
