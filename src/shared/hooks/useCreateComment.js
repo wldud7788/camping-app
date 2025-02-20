@@ -1,8 +1,9 @@
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 import { supabase } from "../supabase/supabaseClient";
-import { useAuth } from "./useAuth";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 export const useCreateComment = (contentId) => {
-  const { user } = useAuth();
+  const { user } = useContext(AuthContext);
   const QUERY_KEY = ["comments", contentId];
 
   // Reqct Query의 캐시를 관리하는 클라이언트 인스턴스
