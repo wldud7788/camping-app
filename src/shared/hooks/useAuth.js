@@ -46,5 +46,12 @@ export const useAuth = () => {
     };
   }, []);
 
-  return { isAuthenticated, isLoading, setIsLoading, user, setUser };
+  return {
+    isAuthenticated,
+    setIsAuthenticated,
+    isLoading,
+    setIsLoading,
+    user,
+    setUser,
+  };
 };

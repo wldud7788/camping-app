@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "../supabase/supabaseClient";
+import { supabase } from "../../supabase/supabaseClient";
 
 export const useDeleteComment = (contentId) => {
   const QUERY_KEY = ["comments", contentId];

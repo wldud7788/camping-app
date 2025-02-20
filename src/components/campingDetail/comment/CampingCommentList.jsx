@@ -1,6 +1,6 @@
 import "./CampingCommentList.css";
 import PropTypes from "prop-types";
-import { useReadComment } from "../../../shared/hooks/useReadComments";
+import { useReadComment } from "../../../shared/hooks/comment/useReadComments";
 import { CampingCommentCard } from "./CampingCommentCard";
 
 export const CampingCommentList = ({ contentId }) => {

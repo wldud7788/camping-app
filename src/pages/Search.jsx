@@ -1,6 +1,6 @@
 import "./Search.css";
 import { SearchCampingCard } from "../components/search/SearchCampingCard";
-import { useCampingSearch } from "../shared/hooks/useCampingSearch";
+import { useCampingSearch } from "../shared/hooks/comment/useCampingSearch";
 import { useEffect, useState } from "react";
 import { useDebounce } from "../shared/hooks/useDebounce";
 import { useSearchParams } from "react-router-dom";
