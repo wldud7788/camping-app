@@ -1,90 +1,57 @@
-import { useContext, useEffect, useState } from "react";
-import { supabase } from "../shared/supabase/supabaseClient";
+import { useContext, useState } from "react";
 import { AuthContext } from "../shared/contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useReadChatRooms } from "../shared/hooks/chat/useReadChatRooms";
+import { useJoinRoom } from "../shared/hooks/chat/useJoinRoom";
+import { useCreateChatRoom } from "../shared/hooks/chat/useCreateChatRoom";
+import { useSubscribeRooms } from "../shared/hooks/chat/useSubscribeRooms";
 
 export const Chat = () => {
   const { user } = useContext(AuthContext);
-  const [rooms, setRooms] = useState([]);
-  const [selectedRoomId, setSelectedRoomId] = useState(null);
   const [roomName, setRoomName] = useState("");
-  useEffect(() => {
-    const loadRooms = async () => {
-      const { data, error } = await supabase
-        .from("rooms")
-        .select("*")
-        .order("created_at", { ascending: false });
+  const nav = useNavigate();
 
-      if (error) {
-        console.error("방 목록 로딩 에러:", error);
-        return;
-      }
+  // 실시간 구독 부분
+  useSubscribeRooms();
 
-      setRooms(data);
-      // 첫 번째 방을 선택
-      if (data.length > 0 && !selectedRoomId) {
-        setSelectedRoomId(data[0].id);
-      }
-    };
+  // 채팅방 READ
+  const { data: rooms = [] } = useReadChatRooms();
 
-    loadRooms();
-  }, []);
+  // 채팅방 CREATE
+  const createRoomMutation = useCreateChatRoom(() => {
+    setRoomName("");
+  });
 
-  // 새 채팅방 생성 함수 (버튼 클릭시에만 호출)
-  const handleCreateRoom = async () => {
-    const { data: room, error } = await supabase
-      .from("rooms")
-      .insert({
-        name: roomName,
-        type: "group",
-        participants: [`${user.id}`],
-      })
-      .select()
-      .single();
+  // 사용자 방 참가 권한 체크
+  const checkRoomAccess = (roomId) => {
+    const selectedRoom = rooms.find((room) => room.id === roomId);
 
-    if (error) {
-      console.error("방 생성 에러:", error);
-      return;
-    }
-
-    setRooms((prev) => [room, ...prev]);
-    setSelectedRoomId(room.id);
+    if (!selectedRoom) return false;
+    return selectedRoom.participants?.includes(user.id);
   };
 
-  // 채팅방 신청하기 함수
-  const handleRequestRoom = async () => {
-    const { data: roomData, error: roomError } = await supabase
-      .from("rooms")
-      .select("participants")
-      .eq("id", selectedRoomId)
-      .single();
+  // 방 참가 mutation
+  const joinRoomMutation = useJoinRoom();
 
-    if (roomError) {
-      console.error("채팅방 정보 조회 에러:", roomError.message);
-      return;
-    }
-
-    // 3. 새로운 participants 배열
-    const newParticipants = [...roomData.participants, user.id];
-
-    // 4. 업데이트 요청
-    const { error: updateError } = await supabase
-      .from("rooms")
-      .update({ participants: newParticipants })
-      .eq("id", selectedRoomId);
-
-    if (updateError) {
-      console.error("채팅방 신청 에러", updateError.message);
-      return;
-    }
-    console.log("채팅방 신청 완료");
+  const handleCreateRoom = (e) => {
+    e.preventDefault();
+    if (!roomName.trim()) return;
+    createRoomMutation.mutate({ name: roomName, userId: user.id });
   };
 
+  const handleRoomSelect = (roomId) => {
+    if (!checkRoomAccess(roomId)) {
+      alert("권한이 없습니다. 채팅 신청을 하신 후 이용해주세요");
+      return;
+    }
+    nav(`/chat/${roomId}`);
+  };
   return (
     <main>
       <div>
         <form onSubmit={handleCreateRoom}>
           <input
+            placeholder="채팅방 이름을 입력하세요"
             type="text"
             value={roomName}
             onChange={(e) => setRoomName(e.target.value)}
@@ -92,18 +59,23 @@ export const Chat = () => {
           <button>새 채팅방 만들기</button>
         </form>
 
-        <div>
+        <div className="chat_list">
           {rooms.map((room) => (
-            <div
-              key={room.id}
-              onClick={() => setSelectedRoomId(room.id)}
-              style={{
-                cursor: "pointer",
-                backgroundColor: selectedRoomId === room.id ? "#eee" : "white",
-              }}
-            >
-              <Link to={`/chat/${room.id}`}>{room.name}</Link>
-              <button onClick={handleRequestRoom}>채팅 신청하기</button>
+            <div key={room.id} onClick={() => handleRoomSelect(room.id)}>
+              {room.name}
+              {!checkRoomAccess(room.id) && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    joinRoomMutation.mutate({
+                      roomId: room.id,
+                      userId: user.id,
+                    });
+                  }}
+                >
+                  채팅신청하기
+                </button>
+              )}
             </div>
           ))}
         </div>
