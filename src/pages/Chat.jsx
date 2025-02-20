@@ -24,6 +24,7 @@ export const Chat = () => {
 
   // 사용자 방 참가 권한 체크
   const checkRoomAccess = (roomId) => {
+    if (!user) return false;
     const selectedRoom = rooms.find((room) => room.id === roomId);
 
     if (!selectedRoom) return false;
@@ -35,12 +36,20 @@ export const Chat = () => {
 
   const handleCreateRoom = (e) => {
     e.preventDefault();
+    if (!user) {
+      alert("로그인 후 이용해주세요");
+      return;
+    }
     if (!roomName.trim()) return;
     createRoomMutation.mutate({ name: roomName, userId: user.id });
   };
 
   const handleRoomSelect = (roomId) => {
     if (!checkRoomAccess(roomId)) {
+      if (!user) {
+        alert("로그인 후 이용해주세요");
+        return;
+      }
       alert("권한이 없습니다. 채팅 신청을 하신 후 이용해주세요");
       return;
     }
