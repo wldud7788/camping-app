@@ -1,9 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { supabase } from "../../supabase/supabaseClient";
 
 export const useCreateMessage = (roomId) => {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async ({ content, userId }) => {
       const { data, error } = await supabase
@@ -26,20 +24,6 @@ export const useCreateMessage = (roomId) => {
 
       if (error) throw error;
       return data;
-    },
-    onSuccess: (newMessage) => {
-      const currentMessages =
-        queryClient.getQueryData(["messages", roomId]) || [];
-      const isExist = currentMessages.some(
-        (message) => message.id === newMessage.id
-      );
-
-      if (!isExist) {
-        queryClient.setQueryData(
-          ["messages", roomId],
-          [...currentMessages, newMessage]
-        );
-      }
     },
   });
 };

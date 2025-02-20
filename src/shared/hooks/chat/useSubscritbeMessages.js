@@ -24,27 +24,33 @@ export const useSubscribeMessages = (roomId) => {
             const currentMessages =
               queryClient.getQueryData(["messages", roomId]) || [];
 
-            // 새 메시지의 상세 정보를 조회
-            const { data: messageData } = await supabase
-              .from("messages")
-              .select(
-                `
-                *,
-                users:user_id (
-                  id,
-                  name
-                )
-              `
+            // 중복 체크
+            const isExist = currentMessages.some(
+              (message) => message.id === payload.new.id
+            );
+            if (!isExist) {
+              // 새 메시지의 상세 정보를 조회
+              const { data: messageData } = await supabase
+                .from("messages")
+                .select(
+                  `
+              *,
+              users:user_id (
+                id,
+                name
               )
-              .eq("id", payload.new.id)
-              .single();
+            `
+                )
+                .eq("id", payload.new.id)
+                .single();
 
-            if (messageData) {
-              // 새 메시지를 기존 목록에 추가
-              queryClient.setQueryData(
-                ["messages", roomId],
-                [...currentMessages, messageData]
-              );
+              if (messageData) {
+                // 새 메시지를 기존 목록에 추가
+                queryClient.setQueryData(
+                  ["messages", roomId],
+                  [...currentMessages, messageData]
+                );
+              }
             }
           }
         }
