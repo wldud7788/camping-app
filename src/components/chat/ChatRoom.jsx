@@ -44,7 +44,7 @@ export default function ChatRoom() {
             }`}
           >
             <div>
-              <div>{message.users?.name || "Unknown"}</div>
+              <div>{message.users.name}</div>
               <div>{message.content}</div>
             </div>
           </div>
