@@ -18,38 +18,42 @@ export const useSubscribeMessages = (roomId) => {
           filter: `room_id=eq.${roomId}`,
         },
         async (payload) => {
-          const currentMessages =
-            queryClient.getQueryData(["messages", roomId]) || [];
+          // 새 메시지가 생성되면
+          if (payload.new) {
+            // 현재 캐시된 메시지 목록을 가져옴
+            const currentMessages =
+              queryClient.getQueryData(["messages", roomId]) || [];
 
-          if (payload.eventType === "INSERT") {
-            const isExist = currentMessages.some(
-              (message) => message.id === payload.new.id
-            );
-            if (!isExist) {
+            // 새 메시지의 상세 정보를 조회
+            const { data: messageData } = await supabase
+              .from("messages")
+              .select(
+                `
+                *,
+                users:user_id (
+                  id,
+                  name
+                )
+              `
+              )
+              .eq("id", payload.new.id)
+              .single();
+
+            if (messageData) {
+              // 새 메시지를 기존 목록에 추가
               queryClient.setQueryData(
                 ["messages", roomId],
-                [...currentMessages, payload.new]
+                [...currentMessages, messageData]
               );
             }
-          } else if (payload.eventType === "UPDATE") {
-            queryClient.setQueryData(
-              ["messages", roomId],
-              currentMessages.map((message) =>
-                message.id === payload.new.id ? payload.new : message
-              )
-            );
-          } else if (payload.eventType === "DELETE") {
-            queryClient.setQueryData(
-              ["messages", roomId],
-              currentMessages.filter((message) => message.id !== payload.old.id)
-            );
           }
         }
       )
       .subscribe();
 
+    // 클린업: 구독 해제
     return () => {
       channel.unsubscribe();
     };
-  }, [queryClient, roomId]);
+  }, [roomId, queryClient]);
 };
