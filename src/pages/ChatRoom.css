@@ -53,4 +53,8 @@
 }
 .chat_room_form button {
   width: 100px;
+  background-color: #ff7800;
+  border: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }

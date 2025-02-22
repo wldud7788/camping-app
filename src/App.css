@@ -23,3 +23,8 @@ main {
 button {
   cursor: pointer;
 }
+input {
+  border-radius: 15px;
+  border: 1px solid #ff7800;
+  padding: 10px 15px;
+}
