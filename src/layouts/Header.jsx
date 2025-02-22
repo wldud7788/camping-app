@@ -5,7 +5,6 @@ import { AuthContext } from "../shared/contexts/AuthContext";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   return (
     <header className="header">
       <Link className="logo" to="/">
@@ -14,7 +13,7 @@ const Header = () => {
       <nav>
         <Link to="/search">캠핑장 검색</Link>
         <Link to="/camping">캠핑장 둘러보기</Link>
-        <Link to="/chat">커뮤니티</Link>
+        <Link to="/chat">채팅</Link>
       </nav>
       <div>
         {user ? (

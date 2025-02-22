@@ -61,6 +61,7 @@ export const Chat = () => {
   };
   return (
     <div className="chat_list_wrapper">
+      <div className="title">채팅방을 만들고 소통해보세요!</div>
       <form onSubmit={handleCreateRoom} className="chat_list_form">
         <input
           placeholder="채팅방 이름을 입력하세요"
@@ -72,6 +73,7 @@ export const Chat = () => {
       </form>
 
       <div className="chat_list">
+        <div className="title">채팅 신청 후 입장해서 소통해보세요</div>
         {rooms.length > 0 ? (
           rooms.map((room) => (
             <div

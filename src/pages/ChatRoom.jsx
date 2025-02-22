@@ -34,7 +34,6 @@ export const ChatRoom = () => {
     });
     setNewMessage("");
   };
-  console.log(messages);
   return (
     <div className="chat_room">
       <div className="chat_room_list">

@@ -48,7 +48,6 @@ export const MypageEdit = ({ setIsEditing }) => {
         } = supabase.storage.from("avatars").getPublicUrl(fileName);
 
         avatarUrl = publicUrl;
-        console.log("publicUrl", publicUrl);
       }
 
       // user테이블 업데이트

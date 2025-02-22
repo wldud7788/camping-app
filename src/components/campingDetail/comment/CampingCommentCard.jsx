@@ -10,11 +10,8 @@ export const CampingCommentCard = ({ commentData }) => {
   const { user } = useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
   const [newComment, setNewComment] = useState("");
-  console.log("commentData", commentData);
 
   const { id, users, content } = commentData;
-  console.log("user", user);
-  console.log("user", users);
   const deleteComment = useDeleteComment(commentData.content_id);
   const updateComment = useUpdateComment(commentData.content_id);
 

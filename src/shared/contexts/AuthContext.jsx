@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
         error: refreshError,
       } = await supabase.auth.refreshSession();
       if (refreshError) {
-        console.log("세션 리프레시 실패");
+        console.error("세션 리프레시 실패");
         // 새션 레프레시 실패 시 로컬 클린업
         localStorage.clear();
         setUser(null);

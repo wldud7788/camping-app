@@ -28,3 +28,6 @@ input {
   border: 1px solid #ff7800;
   padding: 10px 15px;
 }
+input:focus {
+  outline: none;
+}
