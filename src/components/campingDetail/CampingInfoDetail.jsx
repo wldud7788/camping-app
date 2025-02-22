@@ -7,7 +7,7 @@ export const CampingInfoDetail = ({ campingData }) => {
   const sbrsClArray = sbrsCl?.split(",") || [];
   const posblFcltyClArray =
     posblFcltyCl?.split(" ").flatMap((item) => item.split(",")) || [];
-  console.log(campingData);
+
   return (
     <>
       <div className="camping_info_detail">

@@ -34,7 +34,6 @@ export const ChatRoom = () => {
     });
     setNewMessage("");
   };
-  console.log(messages);
   return (
     <div className="chat_room">
       <div className="chat_room_list">
@@ -46,7 +45,13 @@ export const ChatRoom = () => {
             >
               <div className="chat_room_profile">
                 {message.user_id !== user?.id && (
-                  <img src={message.users.avatar_url} alt="" />
+                  <img
+                    src={
+                      message.users.avatar_url ||
+                      "/icon/ico_default_profile.png"
+                    }
+                    alt=""
+                  />
                 )}
 
                 <div>

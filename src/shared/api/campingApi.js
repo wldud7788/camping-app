@@ -20,7 +20,7 @@ export const campingAPi = {
       const data = response.data.response.body;
       return data;
     } catch (error) {
-      console.log("API ERROR", error.message);
+      console.error("API ERROR", error.message);
       throw error;
     }
   },
@@ -39,7 +39,7 @@ export const campingAPi = {
       const data = response.data.response.body;
       return data;
     } catch (error) {
-      console.log("Search API ERROR ", error.message);
+      console.error("Search API ERROR ", error.message);
       throw error;
     }
   },

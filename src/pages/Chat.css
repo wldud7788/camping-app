@@ -1,3 +1,11 @@
+.chat_list_wrapper .title {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
 .chat_list_form {
   display: flex;
   max-width: 600px;
@@ -6,6 +14,7 @@
 .chat_list_form input {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  width: 100%;
 }
 .chat_list_form button {
   width: 200px;
@@ -24,6 +33,14 @@
   background-color: #fff3e9;
   padding: 30px;
   border-radius: 30px;
+  min-height: 70vh;
+  margin-top: 30px;
+}
+.chat_list .title {
+  text-align: center;
+  font-weight: 700;
+  height: 50px;
+  line-height: 50px;
 }
 .chat_list_card {
   height: 50px;

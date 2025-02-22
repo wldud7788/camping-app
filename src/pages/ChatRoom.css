@@ -1,5 +1,5 @@
 .chat_room_list {
-  min-height: 70vh;
+  height: 70vh;
   background-color: #fff3e9;
   border-radius: 30px;
   padding: 30px;
@@ -8,6 +8,18 @@
   gap: 15px;
   max-width: 600px;
   margin: 0 auto;
+  overflow: auto;
+}
+.chat_room_list::-webkit-scrollbar {
+  width: 8px;
+}
+.chat_room_list::-webkit-scrollbar-track {
+  background: #ffddbf;
+  border-radius: 4px;
+}
+.chat_room_list::-webkit-scrollbar-thumb {
+  background-color: #ffb575;
+  border-radius: 4px;
 }
 .text_right {
   display: flex;
@@ -50,7 +62,13 @@
 }
 .chat_room_form input {
   width: 100%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .chat_room_form button {
   width: 100px;
+  background-color: #ff7800;
+  border: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }

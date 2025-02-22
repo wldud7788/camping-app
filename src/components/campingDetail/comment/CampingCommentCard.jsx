@@ -10,11 +10,8 @@ export const CampingCommentCard = ({ commentData }) => {
   const { user } = useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
   const [newComment, setNewComment] = useState("");
-  console.log("commentData", commentData);
 
   const { id, users, content } = commentData;
-  console.log("user", user);
-  console.log("user", users);
   const deleteComment = useDeleteComment(commentData.content_id);
   const updateComment = useUpdateComment(commentData.content_id);
 
@@ -35,7 +32,10 @@ export const CampingCommentCard = ({ commentData }) => {
     <>
       <div className="comment_card">
         <div className="user_info">
-          <img src={users.avatar_url} alt="프로필 이미지" />
+          <img
+            src={users.avatar_url || "/icon/ico_default_profile.png"}
+            alt="프로필 이미지"
+          />
           <div>
             <p className="nick">{users.name}</p>
             <p className="date">
@@ -48,7 +48,7 @@ export const CampingCommentCard = ({ commentData }) => {
           <>
             <p className="comment">{content}</p>
             <div className="button_wrapper">
-              {commentData?.user_id === user.id && (
+              {commentData?.user_id === user?.id && (
                 <>
                   <button onClick={() => setIsEditing(true)}>수정</button>
                   <button onClick={() => onDeleteHandler(id)}>삭제</button>
