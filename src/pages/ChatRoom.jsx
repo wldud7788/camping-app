@@ -1,12 +1,13 @@
+import "./ChatRoom.css";
 import { useContext } from "react";
-import { AuthContext } from "../../shared/contexts/AuthContext";
+import { AuthContext } from "../shared/contexts/AuthContext";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { useReadMessages } from "../../shared/hooks/chat/useReadMessages";
-import { useSubscribeMessages } from "../../shared/hooks/chat/useSubscritbeMessages";
-import { useCreateMessage } from "../../shared/hooks/chat/useCreateMessage";
+import { useReadMessages } from "../shared/hooks/chat/useReadMessages";
+import { useSubscribeMessages } from "../shared/hooks/chat/useSubscritbeMessages";
+import { useCreateMessage } from "../shared/hooks/chat/useCreateMessage";
 
-export default function ChatRoom() {
+export const ChatRoom = () => {
   const params = useParams();
   const roomId = params.id;
   const { user } = useContext(AuthContext);
@@ -32,10 +33,10 @@ export default function ChatRoom() {
     });
     setNewMessage("");
   };
-
+  console.log(messages);
   return (
-    <div>
-      <div>
+    <div className="chat_room">
+      <div className="chat_room_list">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -44,6 +45,7 @@ export default function ChatRoom() {
             }`}
           >
             <div>
+              <img src={message.users.avatal_url} alt="" />
               <div>{message.users.name || "Unknown"}</div>
               <div>{message.content}</div>
             </div>
@@ -64,4 +66,4 @@ export default function ChatRoom() {
       </form>
     </div>
   );
-}
+};

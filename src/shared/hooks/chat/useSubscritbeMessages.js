@@ -37,7 +37,8 @@ export const useSubscribeMessages = (roomId) => {
               *,
               users:user_id (
                 id,
-                name
+                name,
+                avatar_url
               )
             `
                 )

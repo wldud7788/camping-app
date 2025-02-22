@@ -1,3 +1,4 @@
+import "./Chat.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../shared/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +41,10 @@ export const Chat = () => {
       alert("로그인 후 이용해주세요");
       return;
     }
-    if (!roomName.trim()) return;
+    if (!roomName.trim()) {
+      alert("채팅방 이름을 입력해주세요");
+      return;
+    }
     createRoomMutation.mutate({ name: roomName, userId: user.id });
   };
 
@@ -56,39 +60,41 @@ export const Chat = () => {
     nav(`/chat/${roomId}`);
   };
   return (
-    <main>
-      <div>
-        <form onSubmit={handleCreateRoom}>
-          <input
-            placeholder="채팅방 이름을 입력하세요"
-            type="text"
-            value={roomName}
-            onChange={(e) => setRoomName(e.target.value)}
-          />
-          <button>새 채팅방 만들기</button>
-        </form>
+    <div className="chat_list_wrapper">
+      <form onSubmit={handleCreateRoom} className="chat_list_form">
+        <input
+          placeholder="채팅방 이름을 입력하세요"
+          type="text"
+          value={roomName}
+          onChange={(e) => setRoomName(e.target.value)}
+        />
+        <button>채팅방 만들기</button>
+      </form>
 
-        <div className="chat_list">
-          {rooms.map((room) => (
-            <div key={room.id} onClick={() => handleRoomSelect(room.id)}>
-              {room.name}
-              {!checkRoomAccess(room.id) && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    joinRoomMutation.mutate({
-                      roomId: room.id,
-                      userId: user.id,
-                    });
-                  }}
-                >
-                  채팅신청하기
-                </button>
-              )}
-            </div>
-          ))}
-        </div>
+      <div className="chat_list">
+        {rooms.map((room) => (
+          <div
+            className="chat_list_card"
+            key={room.id}
+            onClick={() => handleRoomSelect(room.id)}
+          >
+            {room.name}
+            {!checkRoomAccess(room.id) && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  joinRoomMutation.mutate({
+                    roomId: room.id,
+                    userId: user.id,
+                  });
+                }}
+              >
+                채팅신청
+              </button>
+            )}
+          </div>
+        ))}
       </div>
-    </main>
+    </div>
   );
 };

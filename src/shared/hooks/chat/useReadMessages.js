@@ -10,7 +10,8 @@ export const useReadMessages = (roomId) => {
         *,
         users:user_id (
           id,
-          name
+          name,
+          avatar_url
         )
       `
       )

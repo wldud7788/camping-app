@@ -10,7 +10,7 @@ import SignIn from "../pages/(auth)/SignIn";
 import SignUp from "../pages/(auth)/SignUp";
 import Mypage from "../pages/(auth)/Mypage";
 import { Chat } from "../pages/Chat";
-import ChatRoom from "../components/chat/ChatRoom";
+import { ChatRoom } from "../pages/ChatRoom";
 
 const AppRoutes = () => {
   const { isAuthenticated, isLoading } = useContext(AuthContext);

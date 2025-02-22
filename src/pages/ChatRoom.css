@@ -1,0 +1,11 @@
+.chat_room_list {
+  min-height: 70vh;
+  background-color: #fff3e9;
+  border-radius: 30px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
