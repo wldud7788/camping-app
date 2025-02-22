@@ -1,3 +1,4 @@
+import "./Chat.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../shared/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +41,10 @@ export const Chat = () => {
       alert("로그인 후 이용해주세요");
       return;
     }
-    if (!roomName.trim()) return;
+    if (!roomName.trim()) {
+      alert("채팅방 이름을 입력해주세요");
+      return;
+    }
     createRoomMutation.mutate({ name: roomName, userId: user.id });
   };
 
@@ -56,21 +60,25 @@ export const Chat = () => {
     nav(`/chat/${roomId}`);
   };
   return (
-    <main>
-      <div>
-        <form onSubmit={handleCreateRoom}>
-          <input
-            placeholder="채팅방 이름을 입력하세요"
-            type="text"
-            value={roomName}
-            onChange={(e) => setRoomName(e.target.value)}
-          />
-          <button>새 채팅방 만들기</button>
-        </form>
+    <div className="chat_list_wrapper">
+      <form onSubmit={handleCreateRoom} className="chat_list_form">
+        <input
+          placeholder="채팅방 이름을 입력하세요"
+          type="text"
+          value={roomName}
+          onChange={(e) => setRoomName(e.target.value)}
+        />
+        <button>채팅방 만들기</button>
+      </form>
 
-        <div className="chat_list">
-          {rooms.map((room) => (
-            <div key={room.id} onClick={() => handleRoomSelect(room.id)}>
+      <div className="chat_list">
+        {rooms.length > 0 ? (
+          rooms.map((room) => (
+            <div
+              className="chat_list_card"
+              key={room.id}
+              onClick={() => handleRoomSelect(room.id)}
+            >
               {room.name}
               {!checkRoomAccess(room.id) && (
                 <button
@@ -82,13 +90,15 @@ export const Chat = () => {
                     });
                   }}
                 >
-                  채팅신청하기
+                  채팅신청
                 </button>
               )}
             </div>
-          ))}
-        </div>
+          ))
+        ) : (
+          <div>아직 생성된 채팅방이 없습니다.</div>
+        )}
       </div>
-    </main>
+    </div>
   );
 };
