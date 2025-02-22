@@ -72,28 +72,32 @@ export const Chat = () => {
       </form>
 
       <div className="chat_list">
-        {rooms.map((room) => (
-          <div
-            className="chat_list_card"
-            key={room.id}
-            onClick={() => handleRoomSelect(room.id)}
-          >
-            {room.name}
-            {!checkRoomAccess(room.id) && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  joinRoomMutation.mutate({
-                    roomId: room.id,
-                    userId: user.id,
-                  });
-                }}
-              >
-                채팅신청
-              </button>
-            )}
-          </div>
-        ))}
+        {rooms.length > 0 ? (
+          rooms.map((room) => (
+            <div
+              className="chat_list_card"
+              key={room.id}
+              onClick={() => handleRoomSelect(room.id)}
+            >
+              {room.name}
+              {!checkRoomAccess(room.id) && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    joinRoomMutation.mutate({
+                      roomId: room.id,
+                      userId: user.id,
+                    });
+                  }}
+                >
+                  채팅신청
+                </button>
+              )}
+            </div>
+          ))
+        ) : (
+          <div>아직 생성된 채팅방이 없습니다.</div>
+        )}
       </div>
     </div>
   );
