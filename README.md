@@ -10,7 +10,7 @@ supabse realtime을 활용한 실시간 채팅을 제공하는 웹 애플리케�
 
 ## 🔗 배포 URL
 
-[뉴스 애플리케이션 바로가기](https://camping-app-vert.vercel.app/)
+[캠핑 애플리케이션 바로가기](https://camping-app-vert.vercel.app/)
 
 ## 📝 기술 문서
 
