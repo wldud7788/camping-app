@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useCreateMessage } from "../../shared/hooks/chat/useCreateMessage";
 import PropTypes from "prop-types";
+import { AuthContext } from "../../shared/contexts/AuthContext";
 
-export const ChatMessageForm = ({ roomId, user }) => {
+export const ChatMessageForm = ({ roomId }) => {
+  const { user } = useContext(AuthContext);
   const [newMessage, setNewMessage] = useState("");
   // 메시지 Create 함수
   const createMessageMutation = useCreateMessage(roomId);
@@ -31,16 +33,7 @@ export const ChatMessageForm = ({ roomId, user }) => {
     </form>
   );
 };
-const UserShape = PropTypes.shape({
-  avatar_url: PropTypes.string,
-  created_at: PropTypes.string,
-  email: PropTypes.string,
-  id: PropTypes.string,
-  name: PropTypes.string,
-  provider: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
-  updated_at: PropTypes.string,
-});
+
 ChatMessageForm.propTypes = {
   roomId: PropTypes.string.isRequired,
-  user: UserShape,
 };
