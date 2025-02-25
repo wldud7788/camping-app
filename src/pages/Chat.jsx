@@ -1,106 +1,13 @@
 import "./Chat.css";
-import { useContext, useState } from "react";
-import { AuthContext } from "../shared/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { useReadChatRooms } from "../shared/hooks/chat/useReadChatRooms";
-import { useJoinRoom } from "../shared/hooks/chat/useJoinRoom";
-import { useCreateChatRoom } from "../shared/hooks/chat/useCreateChatRoom";
-import { useSubscribeRooms } from "../shared/hooks/chat/useSubscribeRooms";
+import { ChatRoomForm } from "../components/chat/ChatRoomForm";
+import { ChatRoomList } from "../components/chat/ChatRoomList";
 
 export const Chat = () => {
-  const { user } = useContext(AuthContext);
-  const [roomName, setRoomName] = useState("");
-  const nav = useNavigate();
-
-  // 실시간 구독 부분
-  useSubscribeRooms();
-
-  // 채팅방 READ
-  const { data: rooms = [] } = useReadChatRooms();
-
-  // 채팅방 CREATE
-  const createRoomMutation = useCreateChatRoom(() => {
-    setRoomName("");
-  });
-
-  // 사용자 방 참가 권한 체크
-  const checkRoomAccess = (roomId) => {
-    if (!user) return false;
-    const selectedRoom = rooms.find((room) => room.id === roomId);
-
-    if (!selectedRoom) return false;
-    return selectedRoom.participants?.includes(user.id);
-  };
-
-  // 방 참가 mutation
-  const joinRoomMutation = useJoinRoom();
-
-  const handleCreateRoom = (e) => {
-    e.preventDefault();
-    if (!user) {
-      alert("로그인 후 이용해주세요");
-      return;
-    }
-    if (!roomName.trim()) {
-      alert("채팅방 이름을 입력해주세요");
-      return;
-    }
-    createRoomMutation.mutate({ name: roomName, userId: user.id });
-  };
-
-  const handleRoomSelect = (roomId) => {
-    if (!checkRoomAccess(roomId)) {
-      if (!user) {
-        alert("로그인 후 이용해주세요");
-        return;
-      }
-      alert("권한이 없습니다. 채팅 신청을 하신 후 이용해주세요");
-      return;
-    }
-    nav(`/chat/${roomId}`);
-  };
   return (
     <div className="chat_list_wrapper">
       <div className="title">채팅방을 만들고 소통해보세요!</div>
-      <form onSubmit={handleCreateRoom} className="chat_list_form">
-        <input
-          placeholder="채팅방 이름을 입력하세요"
-          type="text"
-          value={roomName}
-          onChange={(e) => setRoomName(e.target.value)}
-        />
-        <button>채팅방 만들기</button>
-      </form>
-
-      <div className="chat_list">
-        <div className="title">채팅 신청 후 입장해서 소통해보세요</div>
-        {rooms.length > 0 ? (
-          rooms.map((room) => (
-            <div
-              className="chat_list_card"
-              key={room.id}
-              onClick={() => handleRoomSelect(room.id)}
-            >
-              {room.name}
-              {!checkRoomAccess(room.id) && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    joinRoomMutation.mutate({
-                      roomId: room.id,
-                      userId: user.id,
-                    });
-                  }}
-                >
-                  채팅신청
-                </button>
-              )}
-            </div>
-          ))
-        ) : (
-          <div>아직 생성된 채팅방이 없습니다.</div>
-        )}
-      </div>
+      <ChatRoomForm />
+      <ChatRoomList />
     </div>
   );
 };
