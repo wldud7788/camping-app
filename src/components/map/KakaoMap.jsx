@@ -6,8 +6,9 @@ import {
   setupMarkerEvents,
 } from "../../shared/hooks/map/useKakaoMapMarker";
 import { useKakaoMapScript } from "../../shared/hooks/map/useKakaoMapScript";
-import { initializeMap, moveMapCenter } from "../../shared/utils/mapUtils";
+
 import PropTypes from "prop-types";
+import { initializeMap, moveMapCenter } from "../../shared/utils/mapUtils";
 
 export const KakaoMap = ({ displayData, selectedCamping }) => {
   const nav = useNavigate();
