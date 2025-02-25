@@ -27,4 +27,5 @@ SearchCampingCard.propTypes = {
     addr1: PropTypes.string,
     induty: PropTypes.string,
   }),
+  onClick: PropTypes.func,
 };
