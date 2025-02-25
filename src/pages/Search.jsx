@@ -1,8 +1,8 @@
 import "./Search.css";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { SearchCampingListWithMap } from "../components/search/SearchCampingListWithMap";
 import { SearchCampingForm } from "../components/search/SearchCampingForm";
+import { SearchCampingResultWithMap } from "../components/search/SearchCampingResultWithMap";
 
 export const Search = () => {
   // 서치 파람스
@@ -19,7 +19,7 @@ export const Search = () => {
         searchText={searchText}
         setSearchText={setSearchText}
       />
-      <SearchCampingListWithMap
+      <SearchCampingResultWithMap
         setSearchParams={setSearchParams}
         searchText={searchText}
       />

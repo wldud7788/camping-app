@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useCampingSearch } from "../../shared/hooks/search/useCampingSearch";
 import { useDebounce } from "../../shared/hooks/search/useDebounce";
 import { KakaoMap } from "../map/KakaoMap";
-import { SearchCampingCard } from "./SearchCampingCard";
 import { useCampings } from "../../shared/hooks/useCampings";
 import PropTypes from "prop-types";
+import { SearchCampingList } from "./SearchCampingList";
 
-export const SearchCampingListWithMap = ({ setSearchParams, searchText }) => {
+export const SearchCampingResultWithMap = ({ setSearchParams, searchText }) => {
   // 검색어를 디바운싱해서 저장
   const debouncedSearchText = useDebounce(searchText, 500);
 
@@ -36,19 +36,11 @@ export const SearchCampingListWithMap = ({ setSearchParams, searchText }) => {
   return (
     <div className="search_result">
       <div className="search_result_left">
-        {isLoading ? (
-          <div>로딩중...</div>
-        ) : displayData?.length > 0 ? (
-          displayData.map((campingData) => (
-            <SearchCampingCard
-              key={campingData.contentId}
-              campingData={campingData}
-              onClick={() => setSelectedCamping(campingData)}
-            />
-          ))
-        ) : (
-          <div>검색 결과가 없습니다.</div>
-        )}
+        <SearchCampingList
+          isLoading={isLoading}
+          displayData={displayData}
+          setSelectedCamping={setSelectedCamping}
+        />
       </div>
       <div className="search_result_right">
         <KakaoMap
@@ -61,7 +53,7 @@ export const SearchCampingListWithMap = ({ setSearchParams, searchText }) => {
   );
 };
 
-SearchCampingListWithMap.propTypes = {
+SearchCampingResultWithMap.propTypes = {
   setSearchParams: PropTypes.func,
   searchText: PropTypes.string,
 };
