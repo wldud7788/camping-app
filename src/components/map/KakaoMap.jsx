@@ -71,10 +71,9 @@ const campingShape = PropTypes.shape({
   allar: PropTypes.string,
   mapX: PropTypes.string.isRequired,
   mapY: PropTypes.string.isRequired,
-  // 필요한 다른 필드들도 추가 가능
 });
 
 KakaoMap.propTypes = {
   displayData: PropTypes.arrayOf(campingShape),
-  selectedCamping: PropTypes.oneOfType([PropTypes.null, campingShape]),
+  selectedCamping: campingShape,
 };
