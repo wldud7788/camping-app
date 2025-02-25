@@ -90,6 +90,6 @@ CampingCommentCard.propTypes = {
     users: PropTypes.shape({
       name: PropTypes.string.isRequired,
       avatar_url: PropTypes.string.isRequired,
-    }).isRequired,
+    }),
   }).isRequired,
 };
