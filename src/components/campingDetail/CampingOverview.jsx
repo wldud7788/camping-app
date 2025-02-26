@@ -20,7 +20,10 @@ export const CampingOverview = ({ campingData }) => {
     <>
       <div className="camping_overview_section">
         <div className="camping_imgbox">
-          <img src={firstImageUrl} alt={`${facltNm} 이미지`} />
+          <img
+            src={firstImageUrl || "/img/camp_default.jpg"}
+            alt={`${facltNm} 이미지`}
+          />
         </div>
         <div className="camping_info">
           <h1 className="name">{facltNm}</h1>
