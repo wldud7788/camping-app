@@ -31,7 +31,16 @@ supabse realtime을 활용한 실시간 채팅을 제공하는 웹 애플리케�
   <img src="https://velog.velcdn.com/images/rooftop7788/post/b2ed3e76-98cb-4736-baf4-53d6a1b907f0/image.png" width="600" />
   </div>
 
-### 캠핑핑 상세 페이지
+### 캠핑장 둘러보기
+- 전체 캠핑장 리스트 확인
+- 무한스크롤 활용
+    - 초기 로딩 시간 단축: 처음에 필요한 데이터만 로드하여 초기 페이지 로딩 속도 향상
+    - 서버 부하 분산: 데이터를 한 번에 모두 가져오지 않고 사용자가 필요할때만 추가 데이터를 요청 <br/>
+  <div>
+    <img src="https://github.com/user-attachments/assets/d734ce32-d7aa-43bf-9ae9-6186c99400e7" width="600" />
+  </div>
+
+### 캠핑 상세 페이지
 
 - 캠핑장 상세 정보 확인
 - 댓글 작성, 수정, 삭제 기능
