@@ -6,6 +6,7 @@
   width: 100%;
   height: 180px;
   border-radius: 15px;
+  background-color: #dcdcdc;
 }
 .camping_card .camping_imgbox img {
   object-fit: cover;
@@ -15,6 +16,7 @@
   border: 1px solid #e6d8d8c7;
   border-radius: 15px;
   margin-top: 10px;
+  height: 187px;
 }
 .camping_card .camping_info .name {
   font-weight: 800;

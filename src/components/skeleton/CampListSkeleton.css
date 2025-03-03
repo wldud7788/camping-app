@@ -1,0 +1,26 @@
+.camping_card .camping_info .induty {
+  display: inline-block;
+  height: 24px;
+  min-width: 52px;
+}
+.skeleton_name {
+  background-color: #dcdcdc;
+  height: 17px;
+  width: 150px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.skeleton_addr {
+  background-color: #dcdcdc;
+  height: 18px;
+  width: 200px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.skeleton_intro {
+  height: 54px;
+  background-color: #dcdcdc;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}

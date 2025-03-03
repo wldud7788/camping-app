@@ -2,6 +2,7 @@
   padding-top: 30px;
   max-width: 800px;
   margin: 0 auto;
+  min-height: 464px;
 }
 .Home .sub_nav ul {
   display: flex;

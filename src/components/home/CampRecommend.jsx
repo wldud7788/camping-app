@@ -2,9 +2,7 @@ import { useCampings } from "../../shared/hooks/useCampings";
 import { CampingCard } from "../campingAll/CampingCard";
 
 export const CampRecommend = () => {
-  const { data, error } = useCampings();
-  if (!data) return <div>로딩중...</div>;
-  if (error) return <div>에러 발생: {error.message}</div>;
+  const { data } = useCampings();
   return (
     <>
       <div className="recommend">
