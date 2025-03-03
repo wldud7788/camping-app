@@ -9,5 +9,6 @@ export const useCampings = (limit = 6) => {
       return data.items.item;
     },
     staleTime: 1000 * 60 * 60 * 1,
+    suspense: true,
   });
 };
