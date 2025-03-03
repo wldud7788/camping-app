@@ -21,6 +21,7 @@ supabse realtime을 활용한 실시간 채팅을 제공하는 웹 애플리케�
 - [검색 기능 구현](https://velog.io/@rooftop7788/%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84)
 - [카카오맵 활용](https://velog.io/@rooftop7788/React%EB%A1%9C-%EC%BA%A0%ED%95%91-%EC%9B%B9-%EB%A7%8C%EB%93%A4%EA%B8%B06-kakao-map-%ED%99%9C%EC%9A%A9)
 - [채팅 적용](https://velog.io/@rooftop7788/React%EB%A1%9C-%EC%BA%A0%ED%95%91-%EC%9B%B9-%EB%A7%8C%EB%93%A4%EA%B8%B0-6-%EC%B1%84%ED%8C%85-realtime)
+- [최적화](https://velog.io/@rooftop7788/%EC%B5%9C%EC%A0%81%ED%99%94)
 
 ## 💡 주요 기능
 
