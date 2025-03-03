@@ -11,7 +11,7 @@ export const ChatMessageCard = ({ message }) => {
         {message.user_id !== user?.id && (
           <img
             src={message.users.avatar_url || "/icon/ico_default_profile.png"}
-            alt=""
+            alt="프로필이미지"
           />
         )}
 
