@@ -1,8 +1,8 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { CAMPING_API, campingAPi } from "../api/campingApi";
 
-export const useInfiniteCampings = () => {
-  return useInfiniteQuery({
+export const useSuspenseInfiniteCampings = () => {
+  return useSuspenseInfiniteQuery({
     queryKey: ["campings", "infinite"],
     queryFn: async ({ pageParam }) => {
       const data = await campingAPi.getBasedList(pageParam);

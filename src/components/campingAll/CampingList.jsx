@@ -1,19 +1,13 @@
 import "./CampingList.css";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { useInfiniteCampings } from "../../shared/hooks/useInfiniteCampigs";
+import { useSuspenseInfiniteCampings } from "../../shared/hooks/useSuspenseInfiniteCampings";
 import { CampingCard } from "./CampingCard";
 
 export const CampingList = () => {
   const { ref, inView } = useInView();
-  const {
-    data,
-    isLoading,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteCampings();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useSuspenseInfiniteCampings();
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -21,8 +15,6 @@ export const CampingList = () => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  if (isLoading) return <div>로딩중...</div>;
-  if (error) return <div>에러발생: {error.message}</div>;
   return (
     <div className="camping_list_wrapper">
       <h1>캠핑장 리스트</h1>
