@@ -20,9 +20,12 @@ const Header = () => {
           <div className="user_img">
             <Link to="/mypage">
               {user.avatar_url ? (
-                <img src={user.avatar_url} />
+                <img src={user.avatar_url} alt="유저 프로필 이미지" />
               ) : (
-                <img src="/icon/ico_default_profile.png" />
+                <img
+                  src="/icon/ico_default_profile.png"
+                  alt="유저 기본 프로필 이미지"
+                />
               )}
             </Link>
           </div>
@@ -33,5 +36,4 @@ const Header = () => {
     </header>
   );
 };
-// <img src={user.avatar_url} />
 export default Header;
