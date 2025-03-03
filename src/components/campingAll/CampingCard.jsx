@@ -9,7 +9,14 @@ export const CampingCard = ({ campingData }) => {
       <Link to={`/camping/${campingData.contentId}`}>
         <img
           className="camping_imgbox"
-          src={campingData.firstImageUrl || "/img/camp_default.jpg"}
+          src={`https://images.weserv.nl/?url=${encodeURIComponent(
+            campingData.firstImageUrl
+          )}&output=webp&w=400`}
+          loading="lazy"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/img/camp_default.jpg";
+          }}
           alt="캠핑장 이미지"
         />
         <LikeButton />
