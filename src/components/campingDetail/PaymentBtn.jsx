@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -9,14 +8,31 @@ function PaymentBtn({ productName = "테스트 상품", amount = 100 }) {
   const CUSTOMER_ID = import.meta.env.VITE_PORTONE_CUSTOMER_ID;
 
   useEffect(() => {
-    // 포트원 SDK 초기화
-    if (window.IMP) {
-      // 고객사 식별코드로 초기화
-      window.IMP.init(CUSTOMER_ID);
-      setIsSDKLoaded(true);
-    } else {
-      console.error("포트원 SDK를 찾을 수 없습니다.");
-    }
+    const script = document.createElement("script");
+    script.src = "https://cdn.iamport.kr/v1/iamport.js";
+    script.async = true;
+
+    script.onload = () => {
+      console.log("포트원 SDK 로드 완료", window.INP);
+
+      // 포트원 SDK 초기화
+      if (window.IMP) {
+        // 고객사 식별코드로 초기화
+        window.IMP.init(CUSTOMER_ID);
+        setIsSDKLoaded(true);
+      } else {
+        console.error("포트원 SDK를 찾을 수 없습니다.");
+      }
+    };
+
+    script.oneerror = () => {
+      console.error("포트원 SDK로드 중 오류 발생");
+    };
+
+    document.head.appendChild(script);
+    return () => {
+      document.head.removeChild(script);
+    };
   }, [CUSTOMER_ID]);
 
   const handlePayment = () => {
