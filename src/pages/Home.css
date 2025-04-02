@@ -1,49 +1,39 @@
-.Home .sub_nav {
-  padding-top: 30px;
-  max-width: 800px;
-  margin: 0 auto;
-  min-height: 464px;
-}
-.Home .sub_nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.Home .sub_nav ul li {
-  width: 25%;
-  display: flex;
-  justify-content: center;
-}
-.Home .sub_nav ul a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-  margin-bottom: 30px;
-  font-weight: 600;
-  font-size: 18px;
-}
-.Home .sub_nav ul a img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-}
+
 .Home .recommend {
   margin-top: 30px;
 }
-@media screen and (max-width: 767px) {
-  .Home .sub_nav ul a img {
-    width: 100px;
-    height: 100px;
-  }
+.sub_nav {
+  max-width: 580px;
+  margin: 0 auto;
+  width: 100%;
 }
-@media screen and (max-width: 640px) {
-  .Home .sub_nav ul a img {
-    width: 50px;
-    height: 50px;
+.sub_nav ul {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+.sub_nav ul li{
+  text-align: center;
+  max-width: 150px;
+  width: 100%;
+  margin: 0 auto
+}
+.sub_nav ul li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.sub_nav ul li img {
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .sub_nav {
+    font-size: 13px;
   }
-  .Home .sub_nav ul a {
-    font-size: 14px;
+  .sub_nav ul {
+    gap: 15px
   }
 }

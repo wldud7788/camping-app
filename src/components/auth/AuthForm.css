@@ -1,21 +1,19 @@
-.auth_form_wrapper {
-  height: calc(100vh - 160px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .auth_form {
   position: relative;
   width: 100%;
+  max-width: 1000px;
   background-color: rgb(255 207 169);
   display: flex;
   border-radius: 15px;
   overflow: hidden;
+  margin: 30px auto 50px;
 }
 .auth_form .auth_image_wapper {
   width: 50%;
-  height: 600px;
+  height: 100%;
   overflow: hidden;
+  margin: auto
 }
 .auth_form .auth_image_wapper img {
   width: 100%;
@@ -25,16 +23,14 @@
 }
 .auth_form .auth_input_wrapper {
   width: 50%;
-  height: 600px;
+  height: 100%;
   text-align: center;
   background: #ff811fab;
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 30px;
-  padding: 0 30px;
+  padding: 50px;
 }
 .auth_form .auth_input_wrapper h4 {
   font-size: 20px;
@@ -70,7 +66,6 @@
   border-radius: 5px;
   width: 100%;
   height: 40px;
-  font-weight: 800;
 }
 .auth_form form .auth_toggle_btn {
   background-color: #cc6407;
@@ -108,8 +103,9 @@
   }
   .auth_form .auth_input_wrapper {
     width: 100%;
-    z-index: 99;
+    z-index: 5;
     backdrop-filter: blur(3px);
+    padding: 30px 15px
   }
   .Home h2 {
     font-size: 14px;

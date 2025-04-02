@@ -7,8 +7,9 @@ export const CampingCard = ({ campingData }) => {
   return (
     <div className="camping_card">
       <Link to={`/camping/${campingData.contentId}`}>
+        <div className="camping_imgbox">
         <img
-          className="camping_imgbox"
+          
           src={`https://images.weserv.nl/?url=${encodeURIComponent(
             campingData.firstImageUrl
           )}&output=webp&w=400`}
@@ -19,6 +20,7 @@ export const CampingCard = ({ campingData }) => {
           }}
           alt="캠핑장 이미지"
         />
+        </div>
         <LikeButton />
         <div className="camping_info">
           <h2 className="name line-clamp-1">{campingData.facltNm}</h2>
