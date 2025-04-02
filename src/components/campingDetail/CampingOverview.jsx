@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import PaymentBtn from "./PaymentBtn";
 
 export const CampingOverview = ({ campingData }) => {
   const {
@@ -76,6 +77,7 @@ export const CampingOverview = ({ campingData }) => {
               <dd>{tel}</dd>
             </dl>
           )}
+          <PaymentBtn productName={facltNm} amount={500} />
         </div>
       </div>
     </>

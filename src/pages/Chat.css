@@ -35,6 +35,7 @@
   border-radius: 30px;
   min-height: 70vh;
   margin-top: 30px;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
 .chat_list .title {
   text-align: center;
@@ -51,6 +52,7 @@
   border-radius: 15px;
   padding-left: 20px;
   align-items: center;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
 .chat_list_card:hover {
   background-color: #ffba7c;

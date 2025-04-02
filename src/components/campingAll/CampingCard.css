@@ -7,9 +7,12 @@
   height: 180px;
   border-radius: 15px;
   background-color: #dcdcdc;
+  overflow: hidden;
 }
 .camping_card .camping_imgbox img {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 .camping_card .camping_info {
   padding: 20px 15px;
@@ -54,4 +57,12 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+@media screen and (max-width: 659px ) {
+  .camping_card {
+    width: 100%;
+  }
+  .camping_card .camping_imgbox {
+    height: 300px;
+  }
 }

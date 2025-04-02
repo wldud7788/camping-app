@@ -1,4 +1,5 @@
 import "./AuthForm.css";
+import "./AuthForm2.css";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
@@ -55,7 +56,6 @@ export const AuthForm = ({ mode }) => {
   ];
 
   return (
-    <div className="auth_form_wrapper">
       <div className="auth_form">
         <div className="auth_image_wapper">
           <img src="/bg/bg_auth_form.png" alt="캠핑일러스트" />
@@ -94,7 +94,6 @@ export const AuthForm = ({ mode }) => {
           <SocialLogin />
         </div>
       </div>
-    </div>
   );
 };
 
