@@ -3,6 +3,7 @@ import { useJoinRoom } from "../../shared/hooks/chat/useJoinRoom";
 import { AuthContext } from "../../shared/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 export const ChatRoomCard = ({ rooms, room }) => {
   const { user } = useContext(AuthContext);
@@ -21,10 +22,10 @@ export const ChatRoomCard = ({ rooms, room }) => {
   const handleRoomSelect = (roomId) => {
     if (!checkRoomAccess(roomId)) {
       if (!user) {
-        alert("로그인 후 이용해주세요");
+        toast.error("로그인 후 이용해주세요")
         return;
       }
-      alert("권한이 없습니다. 채팅 신청을 하신 후 이용해주세요");
+      toast.error("권한이 없습니다. 채팅 신청을 하신 후 이용해주세요")
       return;
     }
     nav(`/chat/${roomId}`);
@@ -38,7 +39,7 @@ export const ChatRoomCard = ({ rooms, room }) => {
     e.stopPropagation();
 
     if(!user) {
-      alert("로그인 후 이용해주세요");
+      toast.error("로그인 후 이용해주세요")
       return
     }
 
