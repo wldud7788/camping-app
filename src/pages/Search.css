@@ -1,8 +1,14 @@
+.search form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 .search input {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  flex: 1;
+  min-width: 0;
   max-width: 350px;
-  width: 100%;
 }
 .search button {
   background-color: #ff7800;
@@ -18,6 +24,8 @@
   margin-top: 30px;
 }
 .search_result_left {
+  max-width: 770px;
+  overflow-y: scroll;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -30,7 +38,8 @@
 }
 @media screen and (max-width: 767px) {
   .search input {
-    width: calc(100% - 70px);
+    max-width: none;
+    flex: 1;
   }
   .search_result {
     flex-direction: column;
