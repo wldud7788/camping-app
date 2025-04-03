@@ -33,18 +33,27 @@ export const ChatRoomCard = ({ rooms, room }) => {
   // 방 참가 mutation
   const joinRoomMutation = useJoinRoom();
 
+  // 채팅 신청 핸들러
+  const handleJoinRequest = (e,roomId) => {
+    e.stopPropagation();
+
+    if(!user) {
+      alert("로그인 후 이용해주세요");
+      return
+    }
+
+    joinRoomMutation.mutate({
+      roomId: roomId,
+      userId: user.id,
+    });
+  }
+
   return (
     <div className="chat_list_card" onClick={() => handleRoomSelect(room.id)}>
       {room.name}
       {!checkRoomAccess(room.id) && (
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            joinRoomMutation.mutate({
-              roomId: room.id,
-              userId: user.id,
-            });
-          }}
+          onClick={()=>handleJoinRequest(e,room.id)}
         >
           채팅신청
         </button>
