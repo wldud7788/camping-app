@@ -3,6 +3,7 @@ import { useJoinRoom } from "../../shared/hooks/chat/useJoinRoom";
 import { AuthContext } from "../../shared/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 export const ChatRoomCard = ({ rooms, room }) => {
   const { user } = useContext(AuthContext);
@@ -19,14 +20,14 @@ export const ChatRoomCard = ({ rooms, room }) => {
 
   // 방 선택 핸들러
   const handleRoomSelect = (roomId, isButtonClick = false) => {
-    if(isButtonClick) return;
-    
+    if (isButtonClick) return;
+
     if (!checkRoomAccess(roomId)) {
       if (!user) {
-        alert("로그인 후 이용해주세요");
+        toast.error("로그인 후 이용해주세요");
         return;
       }
-      alert("권한이 없습니다. 채팅 신청을 하신 후 이용해주세요");
+      toast.error("권한이 없습니다. 채팅 신청을 하신 후 이용해주세요");
       return;
     }
     nav(`/chat/${roomId}`);
@@ -34,6 +35,21 @@ export const ChatRoomCard = ({ rooms, room }) => {
 
   // 방 참가 mutation
   const joinRoomMutation = useJoinRoom();
+
+  // 채팅 신청 핸들러
+  const handleJoinRequest = (e, roomId) => {
+    e.stopPropagation();
+
+    if (!user) {
+      toast.error("로그인 후 이용해주세요");
+      return;
+    }
+
+    joinRoomMutation.mutate({
+      roomId: roomId,
+      userId: user.id,
+    });
+  };
 
   return (
     <div className="chat_list_card" onClick={() => handleRoomSelect(room.id)}>

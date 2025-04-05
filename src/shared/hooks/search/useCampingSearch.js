@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { campingAPi } from "../../api/campingApi";
 
-export const useCampingSearch = (keyword, limit = 500) => {
+export const useCampingSearch = (keyword, page = 1) => {
   return useQuery({
-    queryKey: ["campings", "search", keyword],
+    queryKey: ["campingSearch", keyword, page],
     queryFn: async () => {
       try {
         if (!keyword.trim()) return [];
-        const data = await campingAPi.searchList(keyword, 1, limit);
+        const data = await campingAPi.searchList(keyword, page);
 
         if (!data?.items?.item) {
           return [];
