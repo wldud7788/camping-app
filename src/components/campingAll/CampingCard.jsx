@@ -8,18 +8,17 @@ export const CampingCard = ({ campingData }) => {
     <div className="camping_card">
       <Link to={`/camping/${campingData.contentId}`}>
         <div className="camping_imgbox">
-        <img
-          
-          src={`https://images.weserv.nl/?url=${encodeURIComponent(
-            campingData.firstImageUrl
-          )}&output=webp&w=400`}
-          loading="lazy"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = "/img/camp_default.jpg";
-          }}
-          alt="캠핑장 이미지"
-        />
+          <img
+            src={`https://images.weserv.nl/?url=${encodeURIComponent(
+              campingData.firstImageUrl
+            )}&output=webp&w=400`}
+            loading="lazy"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/img/camp_default.jpg";
+            }}
+            alt="캠핑장 이미지"
+          />
         </div>
         <LikeButton />
         <div className="camping_info">

@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-function PaymentBtn({ productName = "테스트 상품", amount = 100 }) {
+function PaymentBtn({ productName, amount }) {
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
 
   // 환경 변수에서 고객사 식별코드 가져오기
@@ -52,16 +53,13 @@ function PaymentBtn({ productName = "테스트 상품", amount = 100 }) {
       name: productName, // 상품명
       amount: amount, // 결제금액
       buyer_email: "buyer@example.com", // 구매자 이메일
-      m_redirect_url: `${window.location.origin}/payments/complete`, // 모바일 환경에서 결제 후 리디렉션 URL
     };
 
     // 결제창 호출
     window.IMP.request_pay(paymentData, (response) => {
-      const { success, error_msg, imp_uid, merchant_uid, paid_amount } =
-        response;
+      const { success, error_msg } = response;
 
       if (success) {
-        // console.log("결제 성공", imp_uid, merchant_uid, paid_amount);
         toast.success("결제완료");
       } else {
         toast.error(`결제 실패 ${error_msg}`);
@@ -81,3 +79,7 @@ function PaymentBtn({ productName = "테스트 상품", amount = 100 }) {
 }
 
 export default PaymentBtn;
+PaymentBtn.propTypes = {
+  productName: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+};

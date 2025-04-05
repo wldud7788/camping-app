@@ -1,4 +1,3 @@
-
 .Home .recommend {
   margin-top: 30px;
 }
@@ -9,16 +8,16 @@
 }
 .sub_nav ul {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   padding: 0;
   margin: 0;
 }
-.sub_nav ul li{
+.sub_nav ul li {
   text-align: center;
   max-width: 150px;
   width: 100%;
-  margin: 0 auto
+  margin: 0 auto;
 }
 .sub_nav ul li a {
   display: flex;
@@ -34,6 +33,6 @@
     font-size: 13px;
   }
   .sub_nav ul {
-    gap: 15px
+    gap: 15px;
   }
 }
