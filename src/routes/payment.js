@@ -4,7 +4,7 @@ const router = express.Router();
 
 // 결제 검증 API
 router.post("/payments/verify", async (req, res) => {
-  const { imp_uid, merchant_uid, amount } = req.body;
+  const { imp_uid, amount } = req.body;
 
   try {
     // 1. 포트원 액세스 토큰(access token) 발급 받기

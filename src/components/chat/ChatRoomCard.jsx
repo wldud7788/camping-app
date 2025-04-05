@@ -18,7 +18,9 @@ export const ChatRoomCard = ({ rooms, room }) => {
   };
 
   // 방 선택 핸들러
-  const handleRoomSelect = (roomId) => {
+  const handleRoomSelect = (roomId, isButtonClick = false) => {
+    if(isButtonClick) return;
+    
     if (!checkRoomAccess(roomId)) {
       if (!user) {
         alert("로그인 후 이용해주세요");
@@ -40,6 +42,7 @@ export const ChatRoomCard = ({ rooms, room }) => {
         <button
           onClick={(e) => {
             e.stopPropagation();
+            handleRoomSelect(room.id, true);
             joinRoomMutation.mutate({
               roomId: room.id,
               userId: user.id,
