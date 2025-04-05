@@ -14,15 +14,15 @@
 .chat_list_form input {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  width: 100%;
+  flex: 1;
 }
 .chat_list_form button {
-  width: 200px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #ff7800;
   color: white;
   border: none;
+  padding: 0px 14px;
 }
 .chat_list {
   display: flex;
